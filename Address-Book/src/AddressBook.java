@@ -6,4 +6,5 @@ import java.util.Collections;
  */
 public class AddressBook {
 	Collections entries;
+
 }
