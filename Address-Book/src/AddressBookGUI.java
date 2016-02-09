@@ -16,10 +16,12 @@ import javax.swing.JMenuItem;
  * only when the address book has been changed since the last time it was
  * opened/saved allow the user to request the performance of a use case
  *
+ *TODO we should add an action listener
  */
 public class AddressBookGUI {
 	AddressBookController controller;
-	AddressBook addressBook;
+	private AddressBook addressBook;
+	
 	// TODO add type to listModel and NameList
 	AbstractListModel<?> nameListModel;
 	JList<?> nameList;
@@ -27,7 +29,7 @@ public class AddressBookGUI {
 	JButton editButton;
 	JButton deleteButton;
 	JButton sortByNameButton;
-	JButton sortByZipBUtton;
+	JButton sortByZipButton;
 	JMenuItem newItem;
 	JMenuItem openItem;
 	JMenuItem saveItem;
@@ -35,19 +37,42 @@ public class AddressBookGUI {
 	JMenuItem printItem;
 	JMenuItem quitItem;
 
-	// TODO
+	// TODO arrange layout
+	/*
+	 * initialization
+	 */
 	AddressBookGUI(AddressBookController controller, AddressBook addressBook) {
-
+		this.controller = controller;
+		setAddressBook(addressBook);
+		
+		addButton = new JButton("add");
+		editButton = new JButton("edit");
+		deleteButton = new JButton("delete");
+		sortByNameButton = new JButton("sort by name");
+		sortByZipButton = new JButton("sort by ZIP");
+		
+		newItem = new JMenuItem("new item");
+		openItem = new JMenuItem("open item");
+		saveItem = new JMenuItem("save item");
+		saveAsItem = new JMenuItem("save as item");
+		printItem = new JMenuItem("print item");
+		quitItem = new JMenuItem("quit item");
+		
 	}
 
-	// TODO
+	/**
+	 * @return the addressBook
+	 */
 	AddressBook getAddressBook() {
-		return null;
+		return addressBook;
 	}
-
-	// TODO
+	
+	/**
+	 * @param the addressBook
+	 * TODO
+	 */
 	void setAddressBook(AddressBook addressBook) {
-
+		this.addressBook = addressBook;
 	}
 
 	// TODO

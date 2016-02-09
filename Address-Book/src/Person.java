@@ -13,10 +13,16 @@ public class Person {
 	private String phone;
 
 	/*
-	 * create a new object TODO
+	 * create a new object
 	 */
 	Person(String firstName, String lastName, String address, String city, String state, String zip, String phone) {
-
+		setFirstName(firstName);
+		setLastName(lastName);
+		setAddress(address);
+		setCity(city);
+		setState(state);
+		setZip(zip);
+		setPhone(phone);
 	}
 
 	/**
