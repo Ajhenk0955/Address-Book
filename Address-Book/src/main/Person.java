@@ -8,6 +8,10 @@ import java.io.Serializable;
  * update the stored information (except the name) about the individual
  */
 public class Person implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String firstName;
 	private String lastName;
 	private String address;

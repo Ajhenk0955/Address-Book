@@ -157,7 +157,7 @@ public class AddressBookControllerTest {
 	 */
 	@Test
 	public void testPrintEntries() {
-			String firstName = "joe";
+			String firstName = "Joe";
 			String lastName = "Bob";
 			String address = "kowloon ln";
 			String city = "Punta Rassa";
