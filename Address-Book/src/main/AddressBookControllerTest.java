@@ -35,7 +35,15 @@ public class AddressBookControllerTest {
 	 */
 	@Test
 	public void testAddPerson() {
-		controller.addPerson("Joe", "Bob", "kowloon ln", "Punta Rassa", "FL", "33333", "000-000-000");
+		String firstName = "joe";
+		String lastName = "Bob";
+		String address = "kowloon ln";
+		String city = "Punta Rassa";
+		String state = "FL";
+		String zip = "33333";
+		String phone = "000-000-000";
+		
+		controller.addPerson(firstName, lastName, address, city, state, zip, phone);
 		String output = "kowloon ln Punta Rassa Joe Bob 000-000-000 FL 33333 ";
 		assertEquals("add a person", output, controller.printEntries());
 	}
@@ -45,7 +53,22 @@ public class AddressBookControllerTest {
 	 */
 	@Test
 	public void testEditPerson() {
-		fail("Not yet implemented");
+		int index = 0;
+		String firstName = "joe";
+		String lastName = "Bob";
+		String address = "kowloon ln";
+		String city = "Punta Rassa";
+		String state = "FL";
+		String zip = "33333";
+		String phone = "000-000-000";
+		
+		controller.addPerson(firstName, lastName, address, city, state, zip, phone);
+		
+		city = "Miami";
+		String output = "kowloon ln Miami Joe Bob 000-000-000 FL 33333 ";
+		controller.editPerson(index, firstName, lastName, address, city, state, zip, phone);
+		assertEquals("add a person", output, controller.printEntries());	
+		
 	}
 
 	/**
@@ -53,7 +76,18 @@ public class AddressBookControllerTest {
 	 */
 	@Test
 	public void testDeletePerson() {
-		fail("Not yet implemented");
+		int index = 0;
+		String firstName = "joe";
+		String lastName = "Bob";
+		String address = "kowloon ln";
+		String city = "Punta Rassa";
+		String state = "FL";
+		String zip = "33333";
+		String phone = "000-000-000";
+		
+		controller.addPerson(firstName, lastName, address, city, state, zip, phone);
+		controller.deletePerson(index);
+		assertEquals("delete a person", "", controller.printEntries());
 	}
 
 	/**
@@ -61,7 +95,21 @@ public class AddressBookControllerTest {
 	 */
 	@Test
 	public void testSortName() {
-		fail("Not yet implemented");
+		controller.addPerson("Joe", "Bob", "kowloon ln", "Punta Rassa", "FL", "33333", "000-000-000");
+		controller.addPerson("Jill", "Bob", "kowloon ln", "Punta Rassa", "FL", "33333", "000-000-000");
+		controller.addPerson("Jan", "Bob", "kowloon ln", "Punta Rassa", "FL", "33333", "000-000-000");
+		controller.addPerson("Zeke", "Bob", "kowloon ln", "Punta Rassa", "FL", "33333", "000-000-000");
+		controller.addPerson("Andrew", "Bob", "kowloon ln", "Punta Rassa", "FL", "33333", "000-000-000");
+		
+		controller.sortName();
+
+		String output = "kowloon ln Punta Rassa Zeke Bob 000-000-000 FL 33333 " + 
+		"kowloon ln Punta Rassa Joe Bob 000-000-000 FL 33333 " + 
+		"kowloon ln Punta Rassa Jill Bob 000-000-000 FL 33333 " + 
+		"kowloon ln Punta Rassa Jan Bob 000-000-000 FL 33333 " + 
+		"kowloon ln Punta Rassa Andrew Bob 000-000-000 FL 33333 ";
+		
+		assertEquals("Sort Test", output, controller.printEntries());
 	}
 
 	/**
@@ -109,7 +157,21 @@ public class AddressBookControllerTest {
 	 */
 	@Test
 	public void testPrintEntries() {
-		fail("Not yet implemented");
+			String firstName = "joe";
+			String lastName = "Bob";
+			String address = "kowloon ln";
+			String city = "Punta Rassa";
+			String state = "FL";
+			String zip = "33333";
+			String phone = "000-000-000";
+			
+			controller.addPerson(firstName, lastName, address, city, state, zip, phone);
+			controller.addPerson(firstName, lastName, address, city, state, zip, phone);
+			String output = "kowloon ln Punta Rassa Joe Bob 000-000-000 FL 33333 " + 
+			"kowloon ln Punta Rassa Joe Bob 000-000-000 FL 33333 ";
+			
+			assertEquals("Print Test", output, controller.printEntries());
+			
 	}
 
 }
