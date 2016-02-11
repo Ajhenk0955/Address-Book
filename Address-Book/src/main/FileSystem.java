@@ -34,15 +34,17 @@ public class FileSystem {
 	/*
 	 * Saves serialized file
 	 */
-	void saveFile(AddressBook addressBook, File file) throws IOException {
+	boolean saveFile(AddressBook addressBook, File file) throws IOException {
 		try{
 			FileOutputStream fout = new FileOutputStream(file);
 			ObjectOutputStream oos = new ObjectOutputStream(fout);
 			oos.writeObject(addressBook);
 			oos.close();
+			return true;
 			
 		}catch(Exception e){
 			e.printStackTrace();
+			return false;
 		}
 	}
 }
