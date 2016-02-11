@@ -1,9 +1,10 @@
+package main;
 /*
  * create a new object, given an individual's name, address, city, state, ZIP, and phone
  * get the individual's first name, last name, address, city, state, ZIP, phone number
  * update the stored information (except the name) about the individual
  */
-public class Person {
+public class Person{
 	private String firstName;
 	private String lastName;
 	private String address;
@@ -129,5 +130,7 @@ public class Person {
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
+
+
 
 }

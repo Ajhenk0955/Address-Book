@@ -1,3 +1,4 @@
+package main;
 
 import static org.junit.Assert.*;
 
@@ -5,7 +6,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-public class AddressBookGUITest {
+
+public class PersonTest {
 
 	@Before
 	public void setUp() throws Exception {
