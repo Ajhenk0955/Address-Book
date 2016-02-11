@@ -1,58 +1,115 @@
+/**
+ * 
+ */
 package main;
 
 import static org.junit.Assert.*;
 
-import org.junit.After;
+import java.io.File;
+
 import org.junit.Before;
 import org.junit.Test;
 
+import junit.framework.Assert;
+
+/**
+ * Testing Case
+ *
+ */
 public class AddressBookControllerTest {
 
-	AddressBookController addressBookCont;
-	
+	File file;
+	AddressBook addressBook;
+	AddressBookController controller;
+	/**
+	 * @throws java.lang.Exception
+	 */
 	@Before
 	public void setUp() throws Exception {
-		
+		addressBook = new AddressBook();
+		controller = new AddressBookController(addressBook);
 	}
 
-	@After
-	public void tearDown() throws Exception {
-	}
-
+	/**
+	 * Test method for addPerson
+	 */
 	@Test
-	public void printEntries() {
+	public void testAddPerson() {
+		controller.addPerson("Joe", "Bob", "kowloon ln", "Punta Rassa", "FL", "33333", "000-000-000");
+		String output = "kowloon ln Punta Rassa Joe Bob 000-000-000 FL 33333 ";
+		assertEquals("add a person", output, controller.printEntries());
+	}
+
+	/**
+	 * Test method for edit person
+	 */
+	@Test
+	public void testEditPerson() {
 		fail("Not yet implemented");
 	}
+
+	/**
+	 * Test method for deletePerson
+	 */
 	@Test
-	public void saveAddressBook(){
-		
+	public void testDeletePerson() {
+		fail("Not yet implemented");
 	}
+
+	/**
+	 * Test method for sortName.
+	 */
 	@Test
-	public void updateAddressBook(){
-		
+	public void testSortName() {
+		fail("Not yet implemented");
 	}
+
+	/**
+	 * Test method for sortZIP.
+	 */
 	@Test
-	public void createAddressBook(){
-		
+	public void testSortZIP() {
+		fail("Not yet implemented");
 	}
+
+	/**
+	 * Test method for createAddressBook.
+	 */
 	@Test
-	public void sortZIP(){
-		
+	public void testCreateAddressBook() {
+		fail("Not yet implemented");
 	}
+
+	/**
+	 * Test method for updateaddressBook.
+	 */
 	@Test
-	public void sortName(){
-		
+	public void testUpdateAddressBook() {
+		fail("Not yet implemented");
 	}
+
+	/**
+	 * Test method for saveAddressBook
+	 */
 	@Test
-	public void deletePerson(){
-		
+	public void testSaveAddressBook() {
+		fail("Not yet implemented");
 	}
+
+	/**
+	 * Test method for saveAddressBook2
+	 */
 	@Test
-	public void editPerson(){
-		
+	public void testSaveAddressBookFile() {
+		fail("Not yet implemented");
 	}
+
+	/**
+	 * Test method for printEntries
+	 */
 	@Test
-	public void addPerson(){
-		
+	public void testPrintEntries() {
+		fail("Not yet implemented");
 	}
+
 }

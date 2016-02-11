@@ -20,6 +20,9 @@ public class AddressBookController {
 	AddressBook addressBook;
 	File file;
 
+	public AddressBookController(AddressBook addressBook){
+		this.addressBook = addressBook;
+	}
 	/*
 	 * adds a person to the addressBook
 	 */
@@ -165,18 +168,20 @@ public class AddressBookController {
 	/*
 	 * Prints each entry in the current addressBook
 	 */
-	void printEntries() {
+	String printEntries() {
+		String results = "";
 		for (Person temp : addressBook.entries) {
 			String info = "";
-			info.concat(temp.getAddress() + " ");
-			info.concat(temp.getCity() + " ");
-			info.concat(temp.getFirstName() + " ");
-			info.concat(temp.getLastName() + " ");
-			info.concat(temp.getPhone() + " ");
-			info.concat(temp.getState() + " ");
-			info.concat(temp.getZip() + " ");
-			info.concat(temp.getClass() + " ");
+			info +=(temp.getAddress() + " ");
+			info +=(temp.getCity() + " ");
+			info +=(temp.getFirstName() + " ");
+			info +=(temp.getLastName() + " ");
+			info +=(temp.getPhone() + " ");
+			info +=(temp.getState() + " ");
+			info +=(temp.getZip() + " ");
 			System.out.println(info);
+			results += (info);
 		}
+		return results;
 	}
 }
