@@ -184,4 +184,18 @@ public class AddressBookController {
 		}
 		return results;
 	}
+	public boolean loadFile(File file) throws IOException {
+		if (file == null || file.equals("")) {
+			System.out.println("null file");
+			return false;
+		}
+
+		FileSystem filesystem = new FileSystem();
+		addressBook = filesystem.loadFile(file);
+		return true;
+		
+	}
+	public Person getPerson(String lastName, String firstName) {
+		return addressBook.findPerson(lastName, firstName);
+	}
 }

@@ -1,10 +1,13 @@
 package main;
+
+import java.io.Serializable;
+
 /*
  * create a new object, given an individual's name, address, city, state, ZIP, and phone
  * get the individual's first name, last name, address, city, state, ZIP, phone number
  * update the stored information (except the name) about the individual
  */
-public class Person{
+public class Person implements Serializable{
 	private String firstName;
 	private String lastName;
 	private String address;
@@ -130,7 +133,18 @@ public class Person{
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-
+	@Override
+	public String toString(){
+		String out = "";
+		out += " LastName : " + lastName;
+		out += " FirstName : " + firstName;
+		out += " Address : " + address;
+		out += " City : " + city;
+		out += " State : " + state;
+		out += " Zip : " + zip;
+		out += " Phone : " + phone;
+		return out;
+	}
 
 
 }

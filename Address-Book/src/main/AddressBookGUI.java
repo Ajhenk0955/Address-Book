@@ -88,16 +88,18 @@ public class AddressBookGUI {
 	void update(Observable o, Object arg) {
 
 	}
+	@SuppressWarnings("resource")
 	public static void main(String args[]){
 		//System.out.println("01234567890".substring(0, 3));
 		Scanner in = new Scanner(System.in);
+		String file = "";
 		String cmd;
 		do{	
 			System.out.println("Please type a command (? for a list)");
 			
-			AddressBookController addrBook = new AddressBookController();
+			AddressBookController addrBook = new AddressBookController(new AddressBook() );
 			cmd = in.nextLine().toLowerCase();
-			switch((cmd+"    ").substring(0, 4)){
+			switch( (cmd+"    ").substring(0, 4)){
 				case("add "):
 					System.out.println("\tcmd insert");
 					break;

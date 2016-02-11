@@ -3,6 +3,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInput;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
@@ -45,6 +46,21 @@ public class FileSystem {
 		}catch(Exception e){
 			e.printStackTrace();
 			return false;
+		}
+	}
+
+	public AddressBook loadFile(File file) {
+		try{
+			AddressBook out = null;
+			FileInputStream fin = new FileInputStream(file);
+			ObjectInputStream ois = new ObjectInputStream(fin);
+			out = (AddressBook) ois.readObject();
+			ois.close();
+			return out;
+			
+		}catch(Exception e){
+			e.printStackTrace();
+			return new AddressBook();
 		}
 	}
 }
