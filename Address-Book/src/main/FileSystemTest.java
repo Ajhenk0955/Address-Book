@@ -18,18 +18,29 @@ public class FileSystemTest {
 			st = "fl",
 			zip = "33901",
 			phone = "none, HAHAHAHa",
-			file = "save1.adbk";
+			file = "saveFileSysTest1.adbk";
+	/*
+	 * Set up the save file for the test to load
+	 * putting the target person in the middle
+	 */
 	@Before
 	public void setUp() throws Exception {
 		adsbook = new AddressBookController(new AddressBook());
+		for(int i = 0; i < 2 ; i++)
+			adsbook.addPerson(firstName + i, lastName+ i, addrss+ i, city+ i, st+ i, zip+ i, phone+ i);
 		adsbook.addPerson(firstName, lastName, addrss, city, st, zip, phone);
+		for(int i = 3; i < 5 ; i++)
+			adsbook.addPerson(firstName, lastName, addrss, city, st, zip, phone);
 		adsbook.saveAddressBook(new File(file));
 	}
 
 	@After
 	public void tearDown() throws Exception {
 	}
-
+	/*
+	 * Test to see if addressbookcontroller
+	 * correctly loads from the file
+	 */
 	@Test
 	public void test() {
 		adsbook = new AddressBookController(new AddressBook());
@@ -39,7 +50,12 @@ public class FileSystemTest {
 			fail("Unable to open file");
 		}
 		Person p = adsbook.getPerson(lastName, firstName);
-		if( p != null )
+		if( p != null
+				&& p.getAddress().equals(addrss)
+				&& p.getCity().equals(city)
+				&& p.getState().equals(st)
+				&& p.getZip().equals(zip)
+				&& p.getPhone().equals(phone))
 			return;//pass()
 		else
 			fail();
