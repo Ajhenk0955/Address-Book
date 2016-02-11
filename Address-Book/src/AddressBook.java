@@ -1,3 +1,4 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -7,7 +8,12 @@ import java.util.Map;
  * Base AddressBook class
  * 
  */
-public class AddressBook {
+public class AddressBook implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	private final 	Map<String, List<Person>> 
 						alphabictic_sorted_people 
 							= new LinkedHashMap<String, List<Person>>(),
