@@ -35,7 +35,7 @@ public class AddressBookControllerTest {
 	 */
 	@Test
 	public void testAddPerson() {
-		String firstName = "joe";
+		String firstName = "Joe";
 		String lastName = "Bob";
 		String address = "kowloon ln";
 		String city = "Punta Rassa";
@@ -54,7 +54,7 @@ public class AddressBookControllerTest {
 	@Test
 	public void testEditPerson() {
 		int index = 0;
-		String firstName = "joe";
+		String firstName = "Joe";
 		String lastName = "Bob";
 		String address = "kowloon ln";
 		String city = "Punta Rassa";
