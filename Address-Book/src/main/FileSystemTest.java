@@ -30,7 +30,7 @@ public class FileSystemTest {
 			adsbook.addPerson(firstName + i, lastName+ i, addrss+ i, city+ i, st+ i, zip+ i, phone+ i);
 		adsbook.addPerson(firstName, lastName, addrss, city, st, zip, phone);
 		for(int i = 3; i < 5 ; i++)
-			adsbook.addPerson(firstName, lastName, addrss, city, st, zip, phone);
+			adsbook.addPerson(firstName + i, lastName+ i, addrss+ i, city+ i, st+ i, zip+ i, phone+ i);
 		adsbook.saveAddressBook(new File(file));
 	}
 

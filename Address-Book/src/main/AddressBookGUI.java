@@ -1,6 +1,4 @@
 package main;
-import java.io.BufferedReader;
-import java.io.InputStream;
 import java.util.Observable;
 import java.util.Scanner;
 
@@ -23,23 +21,23 @@ import javax.swing.JMenuItem;
  *TODO we should add an action listener
  */
 public class AddressBookGUI {
-	AddressBookController controller;
+	private AddressBookController controller;
 	private AddressBook addressBook;
 	
 	// TODO add type to listModel and NameList
-	AbstractListModel<?> nameListModel;
-	JList<?> nameList;
-	JButton addButton;
-	JButton editButton;
-	JButton deleteButton;
-	JButton sortByNameButton;
-	JButton sortByZipButton;
-	JMenuItem newItem;
-	JMenuItem openItem;
-	JMenuItem saveItem;
-	JMenuItem saveAsItem;
-	JMenuItem printItem;
-	JMenuItem quitItem;
+	private AbstractListModel<?> nameListModel;
+	private JList<?> nameList;
+	private JButton  addButton;
+	private JButton editButton;
+	private JButton deleteButton;
+	private JButton  sortByNameButton;
+	private JButton sortByZipButton;
+	private JMenuItem newItem;
+	private JMenuItem openItem;
+	private JMenuItem saveItem;
+	private JMenuItem saveAsItem;
+	private JMenuItem printItem;
+	private JMenuItem quitItem;
 
 	// TODO arrange layout
 	/*

@@ -14,7 +14,7 @@ public class AddressBook implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 
-	List<Person> entries;
+	protected List<Person> entries;
 	
 	public AddressBook(){
 		entries = new ArrayList<Person>();

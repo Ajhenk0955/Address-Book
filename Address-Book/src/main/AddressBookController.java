@@ -27,7 +27,7 @@ public class AddressBookController {
 	boolean addPerson(String firstName, String lastName, String address, String city, String state, String zip,
 			String phone) {
 		try {
-			addressBook.entries.add(new Person(firstName, lastName, address, city, state, zip, phone));
+			addressBook.addPerson(new Person(firstName, lastName, address, city, state, zip, phone));
 			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -85,7 +85,7 @@ public class AddressBookController {
 	 */
 	boolean sortName() {
 		try {
-			Collections.sort(addressBook.entries, decending(getComparator(NAME_SORT)));
+			Collections.sort(addressBook.entries, decending(getComparator(LAST_NAME_SORT)));
 			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
