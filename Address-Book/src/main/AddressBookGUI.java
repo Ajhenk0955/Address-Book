@@ -22,7 +22,6 @@ import javax.swing.JMenuItem;
  */
 public class AddressBookGUI {
 	private AddressBookController controller;
-	private AddressBook addressBook;
 	
 	// TODO add type to listModel and NameList
 	private AbstractListModel<?> nameListModel;
@@ -43,9 +42,8 @@ public class AddressBookGUI {
 	/*
 	 * initialization
 	 */
-	AddressBookGUI(AddressBookController controller, AddressBook addressBook) {
+	AddressBookGUI(AddressBookController controller) {
 		this.controller = controller;
-		setAddressBook(addressBook);
 		
 		addButton = new JButton("add");
 		editButton = new JButton("edit");
@@ -60,21 +58,6 @@ public class AddressBookGUI {
 		printItem = new JMenuItem("print item");
 		quitItem = new JMenuItem("quit item");
 		
-	}
-
-	/**
-	 * @return the addressBook
-	 */
-	AddressBook getAddressBook() {
-		return addressBook;
-	}
-	
-	/**
-	 * @param the addressBook
-	 * TODO
-	 */
-	void setAddressBook(AddressBook addressBook) {
-		this.addressBook = addressBook;
 	}
 
 	// TODO

@@ -137,7 +137,10 @@ public class Person implements Serializable{
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-	@Override
+	/**
+	 * @return String
+	 * 			List of the local variables currently are
+	 */
 	public String toString(){
 		String out = "";
 		out += " LastName : " + lastName;

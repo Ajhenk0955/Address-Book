@@ -117,6 +117,9 @@ public class AddressBookController {
 	 * Opens current addressBook located at file
 	 */
 	boolean updateAddressBook(File file) {
+		if(file == null)
+			return false;
+		
 		this.file = file;
 		FileSystem filesystem = new FileSystem();
 		addressBook = filesystem.readFile(file);
