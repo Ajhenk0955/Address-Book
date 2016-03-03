@@ -15,8 +15,8 @@ import static main.PersonComparator.*;
  */
 public class AddressBookController {
 
-	AddressBook addressBook;
-	File file;
+	private AddressBook addressBook;
+	private File file;
 
 	public AddressBookController(AddressBook addressBook){
 		this.addressBook = addressBook;
