@@ -85,7 +85,7 @@ public class AddressBookController {
 	 */
 	boolean sortName() {
 		try {
-			Collections.sort(addressBook.entries, decending(getComparator(LAST_NAME_SORT)));
+			Collections.sort(addressBook.entries, (getComparator(FIRST_NAME_SORT)));
 			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -94,7 +94,7 @@ public class AddressBookController {
 	}
 
 	/*
-	 * Sorts by first name
+	 * Sorts by zip
 	 */
 	boolean sortZIP() {
 		try {
