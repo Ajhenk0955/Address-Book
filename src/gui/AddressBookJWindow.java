@@ -53,8 +53,11 @@ public class AddressBookJWindow {
 				Double.MIN_VALUE };
 		gbl_panel.rowWeights = new double[] { 1.0, Double.MIN_VALUE };
 		panel.setLayout(gbl_panel);
-
+		
+		SimpleButtonFileDialog fileDialog = new SimpleButtonFileDialog(this);
+		
 		JButton btnLoad = new JButton("Load");
+		btnLoad.addActionListener(new LoadAction(fileDialog, addrBookCtrl));
 		GridBagConstraints gbc_btnLoad = new GridBagConstraints();
 		gbc_btnLoad.anchor = GridBagConstraints.NORTHWEST;
 		gbc_btnLoad.insets = new Insets(0, 0, 0, 5);
@@ -63,6 +66,7 @@ public class AddressBookJWindow {
 		panel.add(btnLoad, gbc_btnLoad);
 
 		JButton btnSave = new JButton("Save");
+		btnSave.addActionListener(new LoadAction(fileDialog, addrBookCtrl));
 		GridBagConstraints gbc_btnSave = new GridBagConstraints();
 		gbc_btnSave.insets = new Insets(0, 0, 0, 5);
 		gbc_btnSave.anchor = GridBagConstraints.NORTHWEST;
@@ -71,27 +75,34 @@ public class AddressBookJWindow {
 		panel.add(btnSave, gbc_btnSave);
 
 		JButton btnFind = new JButton("Find");
+		btnSave.addActionListener(new FindAction());
 		GridBagConstraints gbc_btnFind = new GridBagConstraints();
 		gbc_btnFind.insets = new Insets(0, 0, 0, 5);
+		gbc_btnFind.anchor = GridBagConstraints.NORTHEAST;
 		gbc_btnFind.gridx = 8;
 		gbc_btnFind.gridy = 0;
 		panel.add(btnFind, gbc_btnFind);
 
 		JButton btnAdd = new JButton("Add");
+		btnSave.addActionListener(new AddAction());
 		GridBagConstraints gbc_btnAdd = new GridBagConstraints();
 		gbc_btnAdd.insets = new Insets(0, 0, 0, 5);
+		gbc_btnAdd.anchor = GridBagConstraints.NORTHEAST;
 		gbc_btnAdd.gridx = 9;
 		gbc_btnAdd.gridy = 0;
 		panel.add(btnAdd, gbc_btnAdd);
 
 		JButton btnEdit = new JButton("Edit");
+		btnSave.addActionListener(new EditAction());
 		GridBagConstraints gbc_btnEdit = new GridBagConstraints();
 		gbc_btnEdit.insets = new Insets(0, 0, 0, 5);
+		gbc_btnEdit.anchor = GridBagConstraints.NORTHEAST;
 		gbc_btnEdit.gridx = 10;
 		gbc_btnEdit.gridy = 0;
 		panel.add(btnEdit, gbc_btnEdit);
 
 		JButton btnFilter = new JButton("Filter");
+		btnSave.addActionListener(new FilterAction());
 		GridBagConstraints gbc_btnFilter = new GridBagConstraints();
 		gbc_btnFilter.anchor = GridBagConstraints.EAST;
 		gbc_btnFilter.gridx = 11;
@@ -100,35 +111,17 @@ public class AddressBookJWindow {
 
 		JScrollPane scrollPane = new JScrollPane();
 		frmAddressBooklet.getContentPane().add(scrollPane, BorderLayout.CENTER);
-
+		String[][] entries = addrBookCtrl.getEntriesDataPoints(); 
 		table = new JTable();
+		updateTable();
+		scrollPane.setViewportView(table);
+
+		JLabel label = new JLabel("        ");
+		scrollPane.setRowHeaderView(label);
+	}
+	private updateTable(){
 		table.setModel(new DefaultTableModel(
-				new Object[][] { { null, null, null, null, null, null, null },
-						{ null, null, null, null, null, null, null }, { null, null, null, null, null, null, null },
-						{ null, null, null, null, null, null, null }, { null, null, null, null, null, null, null },
-						{ null, null, null, null, null, null, null }, { null, null, null, null, null, null, null },
-						{ null, null, null, null, null, null, null }, { null, null, null, null, null, null, null },
-						{ null, null, null, null, null, null, null }, { null, null, null, null, null, null, null },
-						{ null, null, null, null, null, null, null }, { null, null, null, null, null, null, null },
-						{ null, null, null, null, null, null, null }, { null, null, null, null, null, null, null },
-						{ null, null, null, null, null, null, null }, { null, null, null, null, null, null, null },
-						{ null, null, null, null, null, null, null }, { null, null, null, null, null, null, null },
-						{ null, null, null, null, null, null, null }, { null, null, null, null, null, null, null },
-						{ null, null, null, null, null, null, null }, { null, null, null, null, null, null, null },
-						{ null, null, null, null, null, null, null }, { null, null, null, null, null, null, null },
-						{ null, null, null, null, null, null, null }, { null, null, null, null, null, null, null },
-						{ null, null, null, null, null, null, null }, { null, null, null, null, null, null, null },
-						{ null, null, null, null, null, null, null }, { null, null, null, null, null, null, null },
-						{ null, null, null, null, null, null, null }, { null, null, null, null, null, null, null },
-						{ null, null, null, null, null, null, null }, { null, null, null, null, null, null, null },
-						{ null, null, null, null, null, null, null }, { null, null, null, null, null, null, null },
-						{ null, null, null, null, null, null, null }, { null, null, null, null, null, null, null },
-						{ null, null, null, null, null, null, null }, { null, null, null, null, null, null, null },
-						{ null, null, null, null, null, null, null }, { null, null, null, null, null, null, null },
-						{ null, null, null, null, null, null, null }, { null, null, null, null, null, null, null },
-						{ null, null, null, null, null, null, null }, { null, null, null, null, null, null, null },
-						{ null, null, null, null, null, null, null }, { null, null, null, null, null, null, null },
-						{ null, null, null, null, null, null, null }, },
+				entries,
 				new String[] { "Last Name", "First Name", "Phone Number", "Street Address", "City", "State",
 						"ZIP code" }) {
 			Class[] columnTypes = new Class[] { String.class, String.class, String.class, String.class, String.class,
@@ -138,10 +131,83 @@ public class AddressBookJWindow {
 				return columnTypes[columnIndex];
 			}
 		});
-		scrollPane.setViewportView(table);
-
-		JLabel label = new JLabel("        ");
-		scrollPane.setRowHeaderView(label);
 	}
-
+}
+class LoadAction implements ActionListener{
+	private SimpleButtonFileDialog dialogBox;
+	private AddressBookController addrBook;
+	/**
+	 * 
+	 * @param fileDialog
+	 * @param addrBookCtrl
+	 */
+	public LoadAction(SimpleButtonFileDialog fileDialog, AddressBookController addrBookCtrl){
+		dialogBox = fileDialog;
+		addrBook = addrBookCtrl;
+	}
+	/**
+	 * 
+	 * @param e
+	 */
+	void actionPerformed(ActionEvent e){
+		try{
+			addrBook.LoadAddressBook(dialogBox.toLoadFile());
+		}catch(IOException e1){
+			JOptionPane.showMessageDialog(new JFrame(),
+				    "File Loading Error",
+				    "File Error",
+				    JOptionPane.ERROR_MESSAGE);
+		}
+	}
+}
+class SaveAction implements ActionListener{
+	private SimpleButtonFileDialog dialogBox;
+	private AddressBookController addrBook;
+	/**
+	 * 
+	 * @param fileDialog
+	 * @param addrBookCtrl
+	 */
+	public SaveAction(SimpleButtonFileDialog fileDialog, AddressBookController addrBookCtrl){
+		dialogBox = fileDialog;
+		addrBook = addrBookCtrl;
+	}
+	/**
+	 * 
+	 * @param e
+	 */
+	void actionPerformed(ActionEvent e){
+		addrBook.SaveAddressBook(dialogBox.toSaveFile());
+	}
+}
+class FindAction implements ActionListener{
+	/**
+	 * 
+	 * @param e
+	 */
+	void actionPerformed(ActionEvent e){
+	}
+}
+class AddAction implements ActionListener{
+	/**
+	 * 
+	 * @param e
+	 */
+	void actionPerformed(ActionEvent e){
+	}
+}
+class EditAction implements ActionListener{
+	/**
+	 * 
+	 * @param e
+	 */
+	void actionPerformed(ActionEvent e){
+	}
+}class FilterAction implements ActionListener{
+	/**
+	 * 
+	 * @param e
+	 */
+	void actionPerformed(ActionEvent e){
+	}
 }

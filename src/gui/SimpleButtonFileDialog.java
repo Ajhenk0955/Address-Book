@@ -18,31 +18,13 @@ public class SimpleButtonFileDialog{
 	public SimpleButtonFileDialog(JComponent Center_piece) {
 		parent = Center_piece;
 	}
-
-	/**
-	 * Opens prompt window that allows the user to navigate through files to the
-	 * desired file to save to
-	 * 
-	 * @return Path of the user Selected file
-	 */
-	public File toSaveFilePath(Component target) {
-		JFileChooser fileFinder = new JFileChooser();
-		fileFinder.setCurrentDirectory(new File(System.getProperty("user.home")));
-
-		if (fileFinder.showSaveDialog(parent) == JFileChooser.APPROVE_OPTION) {
-			return fileFinder.getSelectedFile();
-		} else {
-			return null;
-		}
-	}
-
 	/**
 	 * Opens prompt window that allows the user to navigate through files to the
 	 * desired file to Load from
 	 * 
 	 * @return
 	 */
-	public File toLoadFilePath() {
+	public File toLoadFile() {
 		JFileChooser fileFinder = new JFileChooser();
 		fileFinder.setCurrentDirectory(new File(System.getProperty("user.home")));
 
@@ -60,7 +42,7 @@ public class SimpleButtonFileDialog{
 	 * @param description
 	 * @return
 	 */
-	public File toLoadFilePath(String[] extension_types, String description) {
+	public File toLoadFile(String[] extension_types, String description) {
 		JFileChooser fileFinder = new JFileChooser();
 		fileFinder.addChoosableFileFilter(new SimpleFileFilter(extension_types, description));
 		fileFinder.setCurrentDirectory(new File(System.getProperty("user.home")));
@@ -70,26 +52,6 @@ public class SimpleButtonFileDialog{
 		else
 			return null;
 	}
-
-	/**
-	 * Opens prompt window that allows the user to navigate through files to the
-	 * desired file to save to
-	 * 
-	 * @param extension_types
-	 * @param description
-	 * @return
-	 */
-	public File toSaveFilePath(String[] extension_types, String description) {
-		JFileChooser fileFinder = new JFileChooser();
-		fileFinder.addChoosableFileFilter(new SimpleFileFilter(extension_types, description));
-		fileFinder.setCurrentDirectory(new File(System.getProperty("user.home")));
-
-		if (fileFinder.showSaveDialog(parent) == JFileChooser.APPROVE_OPTION)
-			return fileFinder.getSelectedFile();
-		else
-			return null;
-	}
-
 	/**
 	 * Opens prompt window that allows the user to navigate through files to the
 	 * desired file to Load from
@@ -98,7 +60,7 @@ public class SimpleButtonFileDialog{
 	 * @param description
 	 * @return
 	 */
-	public File toLoadFilePath(String[][] extension_types, String[] description) {
+	public File toLoadFile(String[][] extension_types, String[] description) {
 		if (extension_types.length != description.length)
 			return null;
 
@@ -112,7 +74,22 @@ public class SimpleButtonFileDialog{
 		else
 			return null;
 	}
+	/**
+	 * Opens prompt window that allows the user to navigate through files to the
+	 * desired file to save to
+	 * 
+	 * @return Path of the user Selected file
+	 */
+	public File toSaveFile() {
+		JFileChooser fileFinder = new JFileChooser();
+		fileFinder.setCurrentDirectory(new File(System.getProperty("user.home")));
 
+		if (fileFinder.showSaveDialog(parent) == JFileChooser.APPROVE_OPTION) {
+			return fileFinder.getSelectedFile();
+		} else {
+			return null;
+		}
+	}
 	/**
 	 * Opens prompt window that allows the user to navigate through files to the
 	 * desired file to save to
@@ -121,7 +98,25 @@ public class SimpleButtonFileDialog{
 	 * @param description
 	 * @return
 	 */
-	public File toSaveFilePath(String[][] extension_types, String[] description) {
+	public File toSaveFile(String[] extension_types, String description) {
+		JFileChooser fileFinder = new JFileChooser();
+		fileFinder.addChoosableFileFilter(new SimpleFileFilter(extension_types, description));
+		fileFinder.setCurrentDirectory(new File(System.getProperty("user.home")));
+
+		if (fileFinder.showSaveDialog(parent) == JFileChooser.APPROVE_OPTION)
+			return fileFinder.getSelectedFile();
+		else
+			return null;
+	}
+	/**
+	 * Opens prompt window that allows the user to navigate through files to the
+	 * desired file to save to
+	 * 
+	 * @param extension_types
+	 * @param description
+	 * @return
+	 */
+	public File toSaveFile(String[][] extension_types, String[] description) {
 		if (extension_types.length != description.length)
 			return null;
 
