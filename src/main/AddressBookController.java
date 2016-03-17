@@ -245,5 +245,25 @@ public class AddressBookController {
 		}
 		return null;
 	}
+	public String[][] getEntriesDataPoints(){
+		Person[] people = addressBook.getEntries().toArray(new Person[0]);
+		if(people[0] == null)
+			return new String[0][0];
+		
+		final int num_datapoints = people[o].getNumDataPoints();
+		String[][] out = new String[people.length][num_datapoints];
+		
+		for(int i = 0; i < people.length; i++){
+			if(people[i] != null){
+				out[i] = people[i];
+			}else{
+				out[i] = new String[num_datapoints];
+				for(int j = 0; j < num_datapoints; j++){
+					out[i][j] = "";
+				}
+			}
+		}
+		return out;
+	}
 
 }
