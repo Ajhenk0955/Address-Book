@@ -209,7 +209,7 @@ public class AddressBookController {
 	 * Prints each entry in the current addressBook
 	 */
 	String printEntries() {
-		return results.toString();
+		return addressBook.toString();
 	}
 	/*
 	* loads the file that contains an AddressBook

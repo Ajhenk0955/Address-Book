@@ -68,7 +68,6 @@ public class AddressBookJWindow {
 		gbc_btnSave.gridx = 1;
 		gbc_btnSave.gridy = 0;
 		panel.add(btnSave, gbc_btnSave);
-		btnSave.
 		
 		JButton btnFind = new JButton("Find");
 		GridBagConstraints gbc_btnFind = new GridBagConstraints();
