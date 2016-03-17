@@ -196,7 +196,7 @@ public class AddressBookController {
 	/*
 	 * Saves current address book if given file
 	 */
-	boolean saveAddressBook(File file) {
+	public boolean saveAddressBook(File file) {
 		if (file == null) {
 			System.out.println("null file");
 			return false;
