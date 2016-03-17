@@ -46,24 +46,7 @@ public class AddressBookController {
 		} else {
 			try {
 				Person temp = addressBook.entries.get(index);
-
-				if (temp.getAddress() != address)
-					temp.setAddress(address);
-				if (temp.getCity() != city)
-					temp.setCity(city);
-				if (temp.getFirstName() != firstName)
-					temp.setFirstName(firstName);
-				if (temp.getLastName() != lastName)
-					temp.setLastName(lastName);
-				if (temp.getPhone() != phone)
-					temp.setPhone(phone);
-				if (temp.getState() != state)
-					temp.setState(state);
-				if (temp.getZip() != zip)
-					temp.setZip(zip);
-
 				addressBook.entries.set(index, temp);
-
 				return true;
 
 			} catch (Exception e) {
@@ -180,21 +163,11 @@ public class AddressBookController {
 	 * Prints each entry in the current addressBook
 	 */
 	String printEntries() {
-		String results = "";
-		for (Person temp : addressBook.entries) {
-			String info = "";
-			info +=(temp.getAddress() + " ");
-			info +=(temp.getCity() + " ");
-			info +=(temp.getFirstName() + " ");
-			info +=(temp.getLastName() + " ");
-			info +=(temp.getPhone() + " ");
-			info +=(temp.getState() + " ");
-			info +=(temp.getZip() + " ");
-			System.out.println(info);
-			results += (info);
-		}
-		return results;
+		return results.toString();
 	}
+	/*
+	* loads the file that contains an AddressBook
+	*/
 	public boolean loadFile(File file) throws IOException {
 		if (file == null || file.equals("")) {
 			System.out.println("null file");
@@ -206,7 +179,18 @@ public class AddressBookController {
 		return true;
 
 	}
+
+	/*
+	* retrieves a person by lastName and first name
+	*/
 	public Person getPerson(String lastName, String firstName) {
-		return addressBook.findPerson(lastName, firstName);
+
+		for(Person p: addressBook.entries){
+			if(p.getLastName().equals(lastName)
+					&& p.getFirstName().equals(firstName))
+				return p;
+		}
+		return null;
 	}
+
 }

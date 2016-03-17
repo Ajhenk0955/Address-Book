@@ -27,53 +27,20 @@ public class AddressBookTest {
 		assertEquals(AddressBook.class, addressBook.getClass());
 	}
 
-	/*
-	 * testing for addPerson. Searches for person with last and first names
-	 */
+/*
+* test to check to String method
+*still need to update the output string TODO
+*/
 	@Test
-	public void testAddPerson() {
-		String firstName = "Joe";
-		String lastName = "Bob";
-		String address = "kowloon ln";
-		String city = "Punta Rassa";
-		String state = "FL";
-		String zip = "33333";
-		String phone = "000-000-000";
-
-		Person person = new Person(firstName, lastName, address, city, state, zip, phone);
-		addressBook.addPerson(person);
-		
-		assertEquals(person, addressBook.findPerson(lastName, firstName));
-		
-		
-	}
-
-	
-	@Test
-	public void testAddPeople() {
-		fail("Not yet implemented");
-	}
-
-	/*
-	 * adds people and then searches for a person
-	 */
-	@Test
-	public void testFindPerson() {
+	public void testToString() {
 		addressBook.addPerson(new Person("Joe", "Bob", "kowloon ln", "Punta Rassa", "FL", "33333", "000-000-000"));
 		addressBook.addPerson(new Person("Jill", "Bob", "kowloon ln", "Punta Rassa", "FL", "33333", "000-000-000"));
 		addressBook.addPerson(new Person("Jan", "Bob", "kowloon ln", "Punta Rassa", "FL", "33333", "000-000-000"));
 		addressBook.addPerson(new Person("Zeke", "Bob", "kowloon ln", "Punta Rassa", "FL", "33333", "000-000-000"));
 		addressBook.addPerson(new Person("Andrew", "Bob", "kowloon ln", "Punta Rassa", "FL", "33333", "000-000-000"));
 
-		Person person = new Person("Andrew", "Jay", "kowloon ln", "Punta Rassa", "FL", "33333", "000-000-000");
-		addressBook.addPerson(person);
-		
-		assertEquals(person, addressBook.findPerson("Jay", "Andrew"));
-	}
-
-	@Test
-	public void testToString() {
-		fail("Not yet implemented");
+		String output = "";
+		assertEquals(output, addressBook.toString());
 	}
 
 }
