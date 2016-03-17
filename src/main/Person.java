@@ -152,5 +152,19 @@ public class Person implements Serializable {
 		out += " Phone : " + phone;
 		return out;
 	}
+	public String[] getDataPoints(){
+		return new String[]{
+				lastName,
+				firstName,
+				phone,
+				address,
+				city,
+				state,
+				zip
+		};
+	}
+	public int getNumDataPoints(){
+		return getDataPoints().length;
+	}
 
 }
