@@ -3,20 +3,26 @@ package main;
 
 import java.util.Comparator;
 /*
- * this enum is used to compare entries<Person> 
+ * this enum is used to compare entries<Person>
+ *
+ * Returns
+ * -1 o1 < o2
+ *  0 o1 == o2
+ *  1 o1 > 02
  */
 enum PersonComparator implements Comparator<Person> {
+
 	/*
-	 * Returns
-	 * -1 o1 < o2
-	 *  0 o1 == o2
-	 *  1 o1 > 02
-	*/
+	 * used for sorting zip codes
+	 */
 	ZIP_SORT {
 		public int compare(Person o1, Person o2) {
 			return Integer.valueOf(o1.getZip()).compareTo(Integer.valueOf(o2.getZip()));
 		}
 	},
+	/*
+	 * used for sorting first names
+	 */
 	FIRST_NAME_SORT {
 		public int compare(Person o1, Person o2) {
 			return o1.getFirstName().compareTo(o2.getFirstName());
@@ -66,6 +72,9 @@ enum PersonComparator implements Comparator<Person> {
 		};
 	}
 
+	/*
+		 * the actual compare function
+		 */
 	public static Comparator<Person> getComparator(final PersonComparator... multipleOptions) {
 		return new Comparator<Person>() {
 			public int compare(Person o1, Person o2) {

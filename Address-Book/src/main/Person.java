@@ -1,17 +1,10 @@
 package main;
 
-import java.io.Serializable;
-
 /*
- * create a new object, given an individual's name, address, city, state, ZIP, and phone
- * get the individual's first name, last name, address, city, state, ZIP, phone number
- * update the stored information (except the name) about the individual
+ * A person object, built to hold person data
  */
-public class Person implements Serializable{
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+public class Person {
+
 	private String firstName;
 	private String lastName;
 	private String address;
@@ -21,7 +14,7 @@ public class Person implements Serializable{
 	private String phone;
 
 	/*
-	 * create a new object
+	 * create a new object given a person's information
 	 */
 	Person(String firstName, String lastName, String address, String city, String state, String zip, String phone) {
 		setFirstName(firstName);
@@ -137,10 +130,12 @@ public class Person implements Serializable{
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-	/**
-	 * @return String
-	 * 			List of the local variables currently are
+	/*
+	 * creates a string output of all the values
+	 * (non-Javadoc)
+	 * @see java.lang.Object#toString()
 	 */
+	@Override
 	public String toString(){
 		String out = "";
 		out += " LastName : " + lastName;
