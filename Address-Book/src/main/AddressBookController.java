@@ -76,7 +76,7 @@ public class AddressBookController {
 	/*
 	 * Sorts by first name
 	 */
-	boolean sortName() {
+	boolean sortFirstName() {
 		try {
 			Collections.sort(addressBook.entries, (getComparator(FIRST_NAME_SORT)));
 			return true;
@@ -85,7 +85,18 @@ public class AddressBookController {
 			return false;
 		}
 	}
-
+	/*
+	 * Sorts by last name
+	 */
+	boolean sortLastName() {
+		try {
+			Collections.sort(addressBook.entries, (getComparator(LAST_NAME_SORT)));
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
 	/*
 	 * Sorts by zip
 	 */
@@ -98,7 +109,42 @@ public class AddressBookController {
 			return false;
 		}
 	}
-
+	/*
+	 * Sorts by last name
+	 */
+	boolean sortAddress() {
+		try {
+			Collections.sort(addressBook.entries, (getComparator(LAST_NAME_SORT)));
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+	/*
+	 * Sorts by last name
+	 */
+	boolean sortState() {
+		try {
+			Collections.sort(addressBook.entries, (getComparator(LAST_NAME_SORT)));
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+	/*
+	 * Sorts by last name
+	 */
+	boolean sortCity() {
+		try {
+			Collections.sort(addressBook.entries, (getComparator(LAST_NAME_SORT)));
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
 	/*
 	 * Creates a new instance of the address book
 	 */

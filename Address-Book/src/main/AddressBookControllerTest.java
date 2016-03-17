@@ -101,7 +101,7 @@ public class AddressBookControllerTest {
 		controller.addPerson("Zeke", "Bob", "kowloon ln", "Punta Rassa", "FL", "33333", "000-000-000");
 		controller.addPerson("Andrew", "Bob", "kowloon ln", "Punta Rassa", "FL", "33333", "000-000-000");
 
-		controller.sortName();
+		controller.sortFirstName();
 
 		String output = "kowloon ln Punta Rassa Andrew Bob 000-000-000 FL 33333 " +
 		"kowloon ln Punta Rassa Jan Bob 000-000-000 FL 33333 " +
