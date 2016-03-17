@@ -1,4 +1,5 @@
 package main;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -17,15 +18,15 @@ public class FileSystem {
 	 */
 	AddressBook readFile(File file) {
 		AddressBook addressBook;
-		
-		try{
+
+		try {
 			FileInputStream fin = new FileInputStream(file);
 			ObjectInputStream ois = new ObjectInputStream(fin);
 			addressBook = (AddressBook) ois.readObject();
 			ois.close();
-			
+
 			return addressBook;
-		}catch(Exception e){
+		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
 		}
@@ -35,29 +36,29 @@ public class FileSystem {
 	 * Saves serialized file
 	 */
 	boolean saveFile(AddressBook addressBook, File file) throws IOException {
-		try{
+		try {
 			FileOutputStream fout = new FileOutputStream(file);
 			ObjectOutputStream oos = new ObjectOutputStream(fout);
 			oos.writeObject(addressBook);
 			oos.close();
 			return true;
-			
-		}catch(Exception e){
+
+		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
 		}
 	}
 
 	public AddressBook loadFile(File file) {
-		try{
+		try {
 			AddressBook out = null;
 			FileInputStream fin = new FileInputStream(file);
 			ObjectInputStream ois = new ObjectInputStream(fin);
 			out = (AddressBook) ois.readObject();
 			ois.close();
 			return out;
-			
-		}catch(Exception e){
+
+		} catch (Exception e) {
 			e.printStackTrace();
 			return new AddressBook();
 		}

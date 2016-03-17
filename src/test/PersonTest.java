@@ -9,6 +9,7 @@ import org.junit.Test;
 public class PersonTest {
 
 	Person person;
+
 	@Before
 	public void setUp() throws Exception {
 		person = new Person("Joe", "Bob", "kowloon ln", "Punta Rassa", "FL", "33333", "000-000-000");
@@ -19,18 +20,18 @@ public class PersonTest {
 	}
 
 	/*
-	 * compares the class to a new person
-	 * should probably check for a null pointer instead
+	 * compares the class to a new person should probably check for a null
+	 * pointer instead
 	 */
 	@Test
 	public void testPerson() {
 		assertEquals(Person.class, person.getClass());
 	}
 
-/*
-* test to check to String method
-*still need to update the output string TODO
-*/
+	/*
+	 * test to check to String method still need to update the output string
+	 * TODO
+	 */
 	@Test
 	public void testToString() {
 

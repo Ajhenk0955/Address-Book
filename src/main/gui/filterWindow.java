@@ -42,15 +42,15 @@ public class filterWindow {
 		Filter.setBounds(100, 100, 218, 118);
 		Filter.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Filter.getContentPane().setLayout(null);
-		
+
 		JLabel lblSelectFilter = new JLabel("Select Filter :");
 		lblSelectFilter.setBounds(10, 18, 71, 14);
 		Filter.getContentPane().add(lblSelectFilter);
-		
+
 		JComboBox comboBox = new JComboBox();
 		comboBox.setBounds(105, 15, 60, 20);
 		Filter.getContentPane().add(comboBox);
-		
+
 		JButton btnFilter = new JButton("Filter");
 		btnFilter.setBounds(51, 46, 89, 23);
 		Filter.getContentPane().add(btnFilter);

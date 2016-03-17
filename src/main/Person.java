@@ -7,7 +7,7 @@ import java.io.Serializable;
  * get the individual's first name, last name, address, city, state, ZIP, phone number
  * update the stored information (except the name) about the individual
  */
-public class Person implements Serializable{
+public class Person implements Serializable {
 	/**
 	 * 
 	 */
@@ -137,11 +137,11 @@ public class Person implements Serializable{
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
+
 	/**
-	 * @return String
-	 * 			List of the local variables currently are
+	 * @return String List of the local variables currently are
 	 */
-	public String toString(){
+	public String toString() {
 		String out = "";
 		out += " LastName : " + lastName;
 		out += " FirstName : " + firstName;
@@ -152,6 +152,5 @@ public class Person implements Serializable{
 		out += " Phone : " + phone;
 		return out;
 	}
-
 
 }

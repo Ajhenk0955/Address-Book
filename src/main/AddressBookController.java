@@ -19,9 +19,10 @@ public class AddressBookController {
 	private AddressBook addressBook;
 	private File file;
 
-	public AddressBookController(AddressBook addressBook){
+	public AddressBookController(AddressBook addressBook) {
 		this.addressBook = addressBook;
 	}
+
 	/*
 	 * adds a person to the addressBook calls to the addressBook to add returns
 	 * true if success
@@ -85,6 +86,7 @@ public class AddressBookController {
 			return false;
 		}
 	}
+
 	/*
 	 * Sorts by last name
 	 */
@@ -97,6 +99,7 @@ public class AddressBookController {
 			return false;
 		}
 	}
+
 	/*
 	 * Sorts by zip
 	 */
@@ -109,6 +112,7 @@ public class AddressBookController {
 			return false;
 		}
 	}
+
 	/*
 	 * Sorts by last name
 	 */
@@ -121,6 +125,7 @@ public class AddressBookController {
 			return false;
 		}
 	}
+
 	/*
 	 * Sorts by last name
 	 */
@@ -133,6 +138,7 @@ public class AddressBookController {
 			return false;
 		}
 	}
+
 	/*
 	 * Sorts by last name
 	 */
@@ -145,6 +151,7 @@ public class AddressBookController {
 			return false;
 		}
 	}
+
 	/*
 	 * Creates a new instance of the address book
 	 */
@@ -156,7 +163,7 @@ public class AddressBookController {
 	 * Opens current addressBook located at file
 	 */
 	boolean updateAddressBook(File file) {
-		if(file == null)
+		if (file == null)
 			return false;
 
 		this.file = file;
@@ -211,9 +218,10 @@ public class AddressBookController {
 	String printEntries() {
 		return addressBook.toString();
 	}
+
 	/*
-	* loads the file that contains an AddressBook
-	*/
+	 * loads the file that contains an AddressBook
+	 */
 	public boolean loadFile(File file) throws IOException {
 		if (file == null || file.equals("")) {
 			System.out.println("null file");
@@ -227,13 +235,12 @@ public class AddressBookController {
 	}
 
 	/*
-	* retrieves a person by lastName and first name
-	*/
+	 * retrieves a person by lastName and first name
+	 */
 	public Person getPerson(String lastName, String firstName) {
 
-		for(Person p: addressBook.entries){
-			if(p.getLastName().equals(lastName)
-					&& p.getFirstName().equals(firstName))
+		for (Person p : addressBook.entries) {
+			if (p.getLastName().equals(lastName) && p.getFirstName().equals(firstName))
 				return p;
 		}
 		return null;
