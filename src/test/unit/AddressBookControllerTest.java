@@ -235,13 +235,55 @@ public class AddressBookControllerTest {
 
 		controller.sortValue(2);
 
-		String output = "kowloon ln Punta Rassa Andrew Bob 000-000-000 FL 33633 "
-				+ "kowloon ln Punta Rassa Jan Bob 000-000-000 FL 33433 "
-				+ "kowloon ln Punta Rassa Jill Bob 000-000-000 FL 33332 "
-				+ "kowloon ln Punta Rassa Joe Bob 000-000-000 FL 33331 "
-				+ "kowloon ln Punta Rassa Zeke Bob 000-000-000 FL 13333 ";
+		String expected = "serialVersionUID : 1 "
+				+ "Entries :  "
+				+ "Person : "
+					+ "serialVersionUID : 1 "
+					+ "LastName : Bob "
+					+ "FirstName : Andrew "
+					+ "Address : kowloon ln "
+					+ "City : Punta Rassa "
+					+ "State : FL "
+					+ "Zip : 33633 "
+					+ "Phone : 000-000-000 "
+				+ "Person : "
+					+ "serialVersionUID : 1 "
+					+ "LastName : Bob "
+					+ "FirstName : Jan "
+					+ "Address : kowloon ln "
+					+ "City : Punta Rassa "
+					+ "State : FL "
+					+ "Zip : 33433 "
+					+ "Phone : 000-000-000 "
+				+ "Person : "
+					+ "serialVersionUID : 1 "
+					+ "LastName : Bob "
+					+ "FirstName : Jill "
+					+ "Address : kowloon ln "
+					+ "City : Punta Rassa "
+					+ "State : FL "
+					+ "Zip : 33332 "
+					+ "Phone : 000-000-000 "
+				+ "Person : "
+					+ "serialVersionUID : 1 "
+					+ "LastName : Bob "
+					+ "FirstName : Joe "
+					+ "Address : kowloon ln "
+					+ "City : Punta Rassa "
+					+ "State : FL "
+					+ "Zip : 33331 "
+					+ "Phone : 000-000-000 "
+				+ "Person : "
+					+ "serialVersionUID : 1 "
+					+ "LastName : Bob "
+					+ "FirstName : Zeke "
+					+ "Address : kowloon ln "
+					+ "City : Punta Rassa "
+					+ "State : FL "
+					+ "Zip : 13333 "
+					+ "Phone : 000-000-000";
 
-		assertEquals("Sort Test", output, controller.printEntries());
+		assertEquals("Sort Test", expected, controller.printEntries());
 	}
 	/**
 	 * TODO
