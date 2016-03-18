@@ -27,7 +27,7 @@ public class AddressBookController {
 	 * adds a person to the addressBook calls to the addressBook to add returns
 	 * true if success
 	 */
-	boolean addPerson(String firstName, String lastName, String address, String city, String state, String zip,
+	public boolean addPerson(String firstName, String lastName, String address, String city, String state, String zip,
 			String phone) {
 		Person person = new Person(firstName, lastName, address, city, state, zip, phone);
 		if (!addressBook.entries.contains(person)) {
@@ -40,7 +40,7 @@ public class AddressBookController {
 	/*
 	 * edits a person in a list, given information and list index
 	 */
-	boolean editPerson(int index, String firstName, String lastName, String address, String city, String state,
+	public boolean editPerson(int index, String firstName, String lastName, String address, String city, String state,
 			String zip, String phone) {
 		if (addressBook.entries.size() < index) {
 			return false;
@@ -60,7 +60,7 @@ public class AddressBookController {
 	/*
 	 * deletes a person in a list
 	 */
-	boolean deletePerson(int index) {
+	public boolean deletePerson(int index) {
 		if (addressBook.entries.size() < index) {
 			return false;
 		} else {
@@ -77,7 +77,7 @@ public class AddressBookController {
 	/*
 	 * Sorts by first name
 	 */
-	boolean sortFirstName() {
+	public boolean sortFirstName() {
 		try {
 			Collections.sort(addressBook.entries, (getComparator(FIRST_NAME_SORT)));
 			return true;
@@ -103,7 +103,7 @@ public class AddressBookController {
 	/*
 	 * Sorts by zip
 	 */
-	boolean sortZIP() {
+	public boolean sortZIP() {
 		try {
 			Collections.sort(addressBook.entries, decending(getComparator(ZIP_SORT)));
 			return true;
@@ -215,7 +215,7 @@ public class AddressBookController {
 	/*
 	 * Prints each entry in the current addressBook
 	 */
-	String printEntries() {
+	public String printEntries() {
 		return addressBook.toString();
 	}
 
@@ -245,20 +245,21 @@ public class AddressBookController {
 		}
 		return null;
 	}
-	public String[][] getEntriesDataPoints(){
-		Person[] people = addressBook.getEntries().toArray(new Person[0]);
-		if(people[0] == null)
+
+	public String[][] getEntriesDataPoints() {
+		Person[] people = addressBook.entries.toArray(new Person[0]);
+		if (people[0] == null)
 			return new String[0][0];
-		
-		final int num_datapoints = people[o].getNumDataPoints();
+
+		final int num_datapoints = people[0].getNumDataPoints();
 		String[][] out = new String[people.length][num_datapoints];
-		
-		for(int i = 0; i < people.length; i++){
-			if(people[i] != null){
-				out[i] = people[i];
-			}else{
+
+		for (int i = 0; i < people.length; i++) {
+			if (people[i] != null) {
+				out[i] = people[i].getDataPoints();
+			} else {
 				out[i] = new String[num_datapoints];
-				for(int j = 0; j < num_datapoints; j++){
+				for (int j = 0; j < num_datapoints; j++) {
 					out[i][j] = "";
 				}
 			}

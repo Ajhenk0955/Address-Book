@@ -23,7 +23,7 @@ public class Person implements Serializable {
 	/*
 	 * create a new object
 	 */
-	Person(String firstName, String lastName, String address, String city, String state, String zip, String phone) {
+	public Person(String firstName, String lastName, String address, String city, String state, String zip, String phone) {
 		setFirstName(firstName);
 		setLastName(lastName);
 		setAddress(address);
