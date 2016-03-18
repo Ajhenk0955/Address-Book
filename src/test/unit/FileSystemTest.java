@@ -44,7 +44,7 @@ public class FileSystemTest {
 	 * Test to see if addressbookcontroller correctly loads from the file
 	 */
 	@Test
-	public void test() {
+	public void loadTest() {
 		adsbook = new AddressBookController(new AddressBook());
 		try {
 			adsbook.loadFile(new File(file));

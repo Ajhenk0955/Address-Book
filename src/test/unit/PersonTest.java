@@ -15,24 +15,57 @@ public class PersonTest {
 
 	Person person;
 
-	@Before
-	public void setUp() throws Exception {
-		person = new Person("Joe", "Bob", "kowloon ln", "Punta Rassa", "FL", "33333", "000-000-000");
+
+	/*
+	 * test string output
+	 */
+	@Test
+	public void testNewPerson(){
+		String firstName = "Joe";
+		String lastName = "Bob";
+		String address = "kowloon ln";
+		String city = "Punta Rassa";
+		String state = "FL";
+		String zip = "33333";
+		String phone = "000-000-000";
+			
+		person = new Person(firstName, lastName, address, city, state, zip, phone);
+		String output = "serialVersionUID : " + person.serialVersionUID;
+		output += " LastName : " + lastName;
+		output += " FirstName : " + firstName;
+		output += " Address : " + address;
+		output += " City : " + city;
+		output += " State : " + state;
+		output += " Zip : " + zip;
+		output += " Phone : " + phone;
+		
+		assertEquals(output, person.toString());
 	}
-
-	@After
-	public void tearDown() throws Exception {
-	}
-
-
 	/*
 	 * test to check to String method still need to update the output string
 	 * TODO
 	 */
 	@Test
 	public void testToString() {
-
-		String output = "";
+		String firstName = "Joe";
+		String lastName = "Bob";
+		String address = "kowloon ln";
+		String city = "Punta Rassa";
+		String state = "FL";
+		String zip = "33333";
+		String phone = "000-000-000";
+			
+		person = new Person(firstName, lastName, address, city, state, zip, phone);
+		
+		String output = "serialVersionUID : " + person.serialVersionUID;
+		output += " LastName : " + lastName;
+		output += " FirstName : " + firstName;
+		output += " Address : " + address;
+		output += " City : " + city;
+		output += " State : " + state;
+		output += " Zip : " + zip;
+		output += " Phone : " + phone;
+		
 		assertEquals(output, person.toString());
 	}
 
