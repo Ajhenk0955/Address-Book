@@ -1,4 +1,4 @@
-package main;
+
 
 import static org.junit.Assert.*;
 
@@ -8,6 +8,10 @@ import java.io.IOException;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
+import main.AddressBook;
+import main.AddressBookController;
+import main.Person;
 
 public class FileSystemTest {
 	private AddressBookController adsbook;
