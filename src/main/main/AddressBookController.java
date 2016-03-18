@@ -4,6 +4,9 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import static main.PersonComparator.*;
 
@@ -19,11 +22,55 @@ public class AddressBookController {
 
 	private AddressBook addressBook;
 	private File file;
-
+	private HashMap<String, String> REGEX = new HashMap<String, String>();
+	/*
+	 * constructor
+	 */
 	public AddressBookController(AddressBook addressBook) {
 		this.addressBook = addressBook;
+		
+		// input regex to hashmap
+		REGEX.put("US-ZIP", "^[0-9]{5}(?:-[0-9]{4})?$");
+		REGEX.put("PHONE",
+				"^\\(?([0-9]{3})\\)?[-.\\s]?([0-9]{3})[-.\\s]?([0-9]{4})$");
+		REGEX.put("LASTNAME", "[a-zA-z]+([ '-][a-zA-Z]+)*");
+		REGEX.put("FIRSTNAME", "[A-Z][a-zA-Z]*");
+		REGEX.put("CITY", "([a-zA-Z]+|[a-zA-Z]+\\s[a-zA-Z]+)");
+		REGEX.put("STATE", "([a-zA-Z]+|[a-zA-Z]+\\s[a-zA-Z]+)");
+		REGEX.put("ADDRESS", "\\d+\\s+([a-zA-Z]+|[a-zA-Z]+\\s[a-zA-Z]+)");
+		
+		//putting array locations with regex values
+		REGEX.put("0", "LASTNAME");
+		REGEX.put("0", "FIRSTNAME");
+		REGEX.put("0", "PHONE");
+		REGEX.put("0", "ADDRESS");
+		REGEX.put("0", "CITY");
+		REGEX.put("0", "STATE");
+		REGEX.put("0", "US-ZIP");
 	}
 
+	/**
+	 * Verifies any value returns true if all values are valid
+	 * 
+	 * @return
+	 */
+	public boolean verify(Person person){
+		String[] valueToCheck = person.getDataPoints();
+		for(int i = 0; i<valueToCheck.length; i++){
+			if (valueToCheck[i] == null) {
+				continue;
+			}
+			//get type of input
+			String type = REGEX.get(String.valueOf(i));
+			Pattern pattern = Pattern.compile(REGEX.get(type));
+	
+			Matcher matcher = pattern.matcher(valueToCheck[i]);
+			if (!matcher.matches())
+				return false;
+		}
+		return true;
+		
+	}
 	/*
 	 * adds a person to the addressBook calls to the addressBook to add returns
 	 * true if success
