@@ -8,7 +8,6 @@ import java.util.Comparator;
 import static main.PersonComparator.*;
 
 /*
-# IN PROGRESS @ HENK
  * The basic responsibility of an AdressBookController object is to carry out the following functions:
  * Add, Edit and delete a person
  * Sort entries by name and ZIP code
