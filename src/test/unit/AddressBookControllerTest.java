@@ -48,7 +48,23 @@ public class AddressBookControllerTest {
 		String output = "kowloon ln Punta Rassa Joe Bob 000-000-000 FL 33333 ";
 		assertEquals("add a person", output, controller.printEntries());
 	}
+	/**
+	 * Test method for addPerson who already exists
+	 */
+	@Test
+	public void testAddPersonExists() {
+		String firstName = "Joe";
+		String lastName = "Bob";
+		String address = "kowloon ln";
+		String city = "Punta Rassa";
+		String state = "FL";
+		String zip = "33333";
+		String phone = "000-000-000";
 
+		controller.addPerson(firstName, lastName, address, city, state, zip, phone);
+		String output = "kowloon ln Punta Rassa Joe Bob 000-000-000 FL 33333 ";
+		assertEquals(false, controller.addPerson(firstName, lastName, address, city, state, zip, phone));
+	}
 	/**
 	 * Test method for edit person
 	 */
@@ -74,6 +90,33 @@ public class AddressBookControllerTest {
 	}
 
 	/**
+	 * Test method for edit person when list is empty
+	 */
+	@Test
+	public void testEditPersonEmpty() {
+		int index = 0;
+		String firstName = "Joe";
+		String lastName = "Bob";
+		String address = "kowloon ln";
+		String city = "Punta Rassa";
+		String state = "FL";
+		String zip = "33333";
+		String phone = "000-000-000";
+
+		// now editing person
+		city = "Miami";
+		assertEquals(false, controller.editPerson(index, firstName, lastName, address, city, state, zip, phone));
+
+	}
+
+	/**
+	 * TODO test for exception catching
+	 */
+	@Test
+	public void testEditPersonCatch() {
+
+	}
+	/**
 	 * Test method for deletePerson
 	 */
 	@Test
@@ -91,12 +134,29 @@ public class AddressBookControllerTest {
 		controller.deletePerson(index);
 		assertEquals("delete a person", "", controller.printEntries());
 	}
+	/**
+	 * Test method for deletePerson from an empty list
+	 */
+	@Test
+	public void testDeletePersonNoValues() {
+		int index = 0;
+		controller.deletePerson(index);
+		assertEquals(false, controller.deletePerson(index));
+	}
+	/**
+	 * TODO
+	 * Test method for deletePerson and catching error
+	 */
+	@Test
+	public void testDeletePersonCatch() {
+
+	}
 
 	/**
 	 * Test method for sortName descending by firstName
 	 */
 	@Test
-	public void testSortName() {
+	public void testSortNameFirst() {
 		controller.addPerson("Joe", "Bob", "kowloon ln", "Punta Rassa", "FL", "33333", "000-000-000");
 		controller.addPerson("Jill", "Bob", "kowloon ln", "Punta Rassa", "FL", "33333", "000-000-000");
 		controller.addPerson("Jan", "Bob", "kowloon ln", "Punta Rassa", "FL", "33333", "000-000-000");
@@ -114,12 +174,20 @@ public class AddressBookControllerTest {
 
 		assertEquals("Sort Test", output, controller.printEntries());
 	}
-
 	/**
-	 * Test method for sortZIP decending
+	 * TODO
+	 * Test method for sortName descending by lastName
 	 */
 	@Test
-	public void testSortZIP() {
+	public void testSortNameLast() {
+
+	}
+
+	/**
+	 * Test method for sortZIP descending
+	 */
+	@Test
+	public void testSortZIPDescending() {
 		controller.addPerson("Joe", "Bob", "kowloon ln", "Punta Rassa", "FL", "33331", "000-000-000");
 		controller.addPerson("Jill", "Bob", "kowloon ln", "Punta Rassa", "FL", "33332", "000-000-000");
 		controller.addPerson("Jan", "Bob", "kowloon ln", "Punta Rassa", "FL", "33433", "000-000-000");
@@ -135,6 +203,14 @@ public class AddressBookControllerTest {
 				+ "kowloon ln Punta Rassa Zeke Bob 000-000-000 FL 13333 ";
 
 		assertEquals("Sort Test", output, controller.printEntries());
+	}
+	/**
+	 * TODO
+	 * Test method for sortZIP ascending
+	 */
+	@Test
+	public void testSortZIPAscending() {
+
 	}
 
 	/**
@@ -159,6 +235,14 @@ public class AddressBookControllerTest {
 		controller.addPerson(firstName, lastName, address, city, state, zip, phone);
 		String book2 = controller.printEntries();
 		assertNotEquals("Address Book Exists Test", book1, book2);
+	}
+	/**
+	 * TODO
+	 * Test method for sort error catching
+	 */
+	@Test
+	public void testSortError() {
+
 	}
 
 	/**
@@ -203,6 +287,7 @@ public class AddressBookControllerTest {
 	}
 
 	/**
+	 * TODO
 	 * Test method for saveAddressBook
 	 */
 	@Test
@@ -263,6 +348,14 @@ public class AddressBookControllerTest {
 
 		assertEquals("Print Test", output, controller.printEntries());
 
+	}
+	/*
+	 * TODO
+	 * test for get data points
+	 */
+	@Test
+	public void testGetDataPoints(){
+		
 	}
 
 }

@@ -33,8 +33,10 @@ public class AddressBookController {
 		Person person = new Person(firstName, lastName, address, city, state, zip, phone);
 		if (!addressBook.entries.contains(person)) {
 			addressBook.entries.add(person);
+			return true;
+		} else {
+			return false;
 		}
-		return true;
 
 	}
 
