@@ -155,14 +155,14 @@ public class AddressBookController {
 	/*
 	 * Creates a new instance of the address book
 	 */
-	void createAddressBook() {
+	public void createAddressBook() {
 		addressBook = new AddressBook();
 	}
 
 	/*
 	 * Opens current addressBook located at file
 	 */
-	boolean updateAddressBook(File file) {
+	public boolean updateAddressBook(File file) {
 		if (file == null)
 			return false;
 
