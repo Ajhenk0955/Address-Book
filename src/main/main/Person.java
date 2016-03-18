@@ -142,7 +142,7 @@ public class Person implements Serializable {
 	 * @return String List of the local variables currently are
 	 */
 	public String toString() {
-		String out = "";
+		String out = "serialVersionUID : " + serialVersionUID;
 		out += " LastName : " + lastName;
 		out += " FirstName : " + firstName;
 		out += " Address : " + address;
