@@ -7,7 +7,7 @@ import org.junit.runners.Suite.SuiteClasses;
  * runs all unit tests
  */
 @RunWith(Suite.class)
-@SuiteClasses({ AddressBookControllerTest.class, AddressBookGUITest.class, FileSystemTest.class, PersonTest.class })
+@SuiteClasses({ AddressBookControllerTest.class, FileSystemTest.class, PersonTest.class })
 public class AllTests {
 
 }
