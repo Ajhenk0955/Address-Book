@@ -68,5 +68,44 @@ public class PersonTest {
 		
 		assertEquals(output, person.toString());
 	}
+	/*
+	 * test to validate return of string[]
+	 */
+	@Test
+	public void testDataPoints(){
+		String firstName = "Joe";
+		String lastName = "Bob";
+		String address = "kowloon ln";
+		String city = "Punta Rassa";
+		String state = "FL";
+		String zip = "33333";
+		String phone = "000-000-000";
+			
+		person = new Person(firstName, lastName, address, city, state, zip, phone);
+		
+		String[] output = {lastName,firstName,phone,address,city,state,zip};
+		
+		assertArrayEquals(output, person.getDataPoints());
+	}
+	
+	/*
+	 * test to validate return of string[]
+	 */
+	@Test
+	public void testNumDataPoints(){
+		String firstName = "Joe";
+		String lastName = "Bob";
+		String address = "kowloon ln";
+		String city = "Punta Rassa";
+		String state = "FL";
+		String zip = "33333";
+		String phone = "000-000-000";
+			
+		person = new Person(firstName, lastName, address, city, state, zip, phone);
+		
+		int output = 7;
+		
+		assertEquals(output, person.getNumDataPoints());
+	}
 
 }
