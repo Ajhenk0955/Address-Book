@@ -16,18 +16,18 @@ public class FileSystem {
 	/*
 	 * Returns address book at file location
 	 */
-	AddressBook readFile(File file) {
+	public AddressBook readFile(File file) {
 		AddressBook addressBook;
-
+		ObjectInputStream ois = null;
 		try {
 			FileInputStream fin = new FileInputStream(file);
-			ObjectInputStream ois = new ObjectInputStream(fin);
+			ois = new ObjectInputStream(fin);
 			addressBook = (AddressBook) ois.readObject();
 			ois.close();
 
 			return addressBook;
 		} catch (Exception e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 			return null;
 		}
 	}
@@ -35,31 +35,33 @@ public class FileSystem {
 	/*
 	 * Saves serialized file
 	 */
-	boolean saveFile(AddressBook addressBook, File file) throws IOException {
+	public boolean saveFile(AddressBook addressBook, File file) {
+		ObjectOutputStream oos = null;
 		try {
 			FileOutputStream fout = new FileOutputStream(file);
-			ObjectOutputStream oos = new ObjectOutputStream(fout);
+			oos = new ObjectOutputStream(fout);
 			oos.writeObject(addressBook);
 			oos.close();
 			return true;
 
 		} catch (Exception e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 			return false;
 		}
 	}
 
 	public AddressBook loadFile(File file) {
+		ObjectInputStream ois = null;
 		try {
 			AddressBook out = null;
 			FileInputStream fin = new FileInputStream(file);
-			ObjectInputStream ois = new ObjectInputStream(fin);
+			ois = new ObjectInputStream(fin);
 			out = (AddressBook) ois.readObject();
 			ois.close();
 			return out;
 
 		} catch (Exception e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 			return new AddressBook();
 		}
 	}
