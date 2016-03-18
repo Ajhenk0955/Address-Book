@@ -1,3 +1,4 @@
+package unit;
 
 import static org.junit.Assert.*;
 
@@ -12,6 +13,9 @@ import main.AddressBook;
 import main.AddressBookController;
 import main.Person;
 
+/*
+ * unit test for filesystem creation
+ */
 public class FileSystemTest {
 	private AddressBookController adsbook;
 	String firstName = "f", lastName = "l", addrss = "242 sw 41 blvd", city = "fort myers", st = "fl", zip = "33901",

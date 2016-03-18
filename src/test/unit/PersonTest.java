@@ -1,3 +1,4 @@
+package unit;
 
 import static org.junit.Assert.*;
 
@@ -7,6 +8,9 @@ import org.junit.Test;
 
 import main.Person;
 
+/*
+ * unit testing for class person
+ */
 public class PersonTest {
 
 	Person person;
@@ -20,14 +24,6 @@ public class PersonTest {
 	public void tearDown() throws Exception {
 	}
 
-	/*
-	 * compares the class to a new person should probably check for a null
-	 * pointer instead
-	 */
-	@Test
-	public void testPerson() {
-		assertEquals(Person.class, person.getClass());
-	}
 
 	/*
 	 * test to check to String method still need to update the output string
