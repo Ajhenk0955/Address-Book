@@ -78,8 +78,8 @@ public class AddressBookController {
 
 	/*
 	 * sorts based on the value using a switch to set the comparator
-	 * 0 = firstNameSortAscending
-	 * 1 = lastNameSortAscending
+	 * 0 = lastNameSortAscending
+	 * 1 = firstNameSortAscending
 	 * 2 = zipSort descending
 	 * 3 = zipSort ascending
 	 */
@@ -89,11 +89,11 @@ public class AddressBookController {
 			return false;
 		}
 		switch(option){
-		case 0: // first name
-			compare = getComparator(FIRST_NAME_SORT);
-			break;
-		case 1: // last name
+		case 0: // last name
 			compare = getComparator(LAST_NAME_SORT);
+			break;
+		case 1: // first name
+			compare = getComparator(FIRST_NAME_SORT);
 			break;
 		case 2: // sortZIP
 			compare = decending(getComparator(ZIP_SORT));
