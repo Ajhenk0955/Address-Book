@@ -53,7 +53,7 @@ public class AddressBookControllerTest {
 		String city = "Punta Rassa";
 		String state = "FL";
 		String zip = "33333";
-		String phone = "000-000-000";
+		String phone = "239-154-9584";
 
 		controller.addPerson(firstName, lastName, address, city, state, zip, phone);
 		String output = "serialVersionUID : 1 "
@@ -69,7 +69,7 @@ public class AddressBookControllerTest {
 						+ " Phone : " + phone;
 		assertEquals("add a person", output, controller.printEntries());
 	}
-	/**
+	/**TODO not working
 	 * Test method for addPerson who already exists
 	 */
 	@Test
@@ -80,7 +80,7 @@ public class AddressBookControllerTest {
 		String city = "Punta Rassa";
 		String state = "FL";
 		String zip = "33333";
-		String phone = "000-000-000";
+		String phone = "239-154-9584";
 
 		controller.addPerson(firstName, lastName, address, city, state, zip, phone);
 		
@@ -100,7 +100,7 @@ public class AddressBookControllerTest {
 		String city = "Punta Rassa";
 		String state = "FL";
 		String zip = "33333";
-		String phone = "000-000-000";
+		String phone = "239-154-9584";
 
 		controller.addPerson(firstName, lastName, address, city, state, zip, phone);
 		// now editing person
@@ -135,7 +135,7 @@ public class AddressBookControllerTest {
 		String city = "Punta Rassa";
 		String state = "FL";
 		String zip = "33333";
-		String phone = "000-000-000";
+		String phone = "239-154-9584";
 
 		// now editing person
 		city = "Miami";
@@ -162,7 +162,7 @@ public class AddressBookControllerTest {
 		String city = "Punta Rassa";
 		String state = "FL";
 		String zip = "33333";
-		String phone = "000-000-000";
+		String phone = "239-154-9584";
 
 		controller.addPerson(firstName, lastName, address, city, state, zip, phone);
 		controller.deletePerson(index);
@@ -193,11 +193,11 @@ public class AddressBookControllerTest {
 	 */
 	@Test
 	public void testSortNameFirst() {
-		controller.addPerson("Joe", "Bob", "kowloon ln", "Punta Rassa", "FL", "33333", "000-000-000");
-		controller.addPerson("Jill", "Bob", "kowloon ln", "Punta Rassa", "FL", "33333", "000-000-000");
-		controller.addPerson("Jan", "Bob", "kowloon ln", "Punta Rassa", "FL", "33333", "000-000-000");
-		controller.addPerson("Zeke", "Bob", "kowloon ln", "Punta Rassa", "FL", "33333", "000-000-000");
-		controller.addPerson("Andrew", "Bob", "kowloon ln", "Punta Rassa", "FL", "33333", "000-000-000");
+		controller.addPerson("Joe", "Bob", "kowloon ln", "Punta Rassa", "FL", "33333", "239-154-9584");
+		controller.addPerson("Jill", "Bob", "kowloon ln", "Punta Rassa", "FL", "33333", "239-154-9584");
+		controller.addPerson("Jan", "Bob", "kowloon ln", "Punta Rassa", "FL", "33333", "239-154-9584");
+		controller.addPerson("Zeke", "Bob", "kowloon ln", "Punta Rassa", "FL", "33333", "239-154-9584");
+		controller.addPerson("Andrew", "Bob", "kowloon ln", "Punta Rassa", "FL", "33333", "239-154-9584");
 
 		// option 1
 		controller.sortValue(1);
@@ -210,7 +210,7 @@ public class AddressBookControllerTest {
 					+ "City : Punta Rassa "
 					+ "State : FL "
 					+ "Zip : 33333 "
-					+ "Phone : 000-000-000 "
+					+ "Phone : 239-154-9584 "
 				+ "Person : "
 					+ "serialVersionUID : 1 "
 					+ "LastName : Bob "
@@ -219,7 +219,7 @@ public class AddressBookControllerTest {
 					+ "City : Punta Rassa "
 					+ "State : FL "
 					+ "Zip : 33333 "
-					+ "Phone : 000-000-000 "
+					+ "Phone : 239-154-9584 "
 				+ "Person : "
 					+ "serialVersionUID : 1 "
 					+ "LastName : Bob "
@@ -227,7 +227,7 @@ public class AddressBookControllerTest {
 					+ "Address : kowloon ln "
 					+ "City : Punta Rassa "
 					+ "State : FL Zip : 33333 "
-					+ "Phone : 000-000-000 "
+					+ "Phone : 239-154-9584 "
 				+ "Person : "
 					+ "serialVersionUID : 1 "
 					+ "LastName : Bob "
@@ -236,7 +236,7 @@ public class AddressBookControllerTest {
 					+ "City : Punta Rassa "
 					+ "State : FL "
 					+ "Zip : 33333 "
-					+ "Phone : 000-000-000 "
+					+ "Phone : 239-154-9584 "
 				+ "Person : "
 					+ "serialVersionUID : 1 "
 					+ "LastName : Bob "
@@ -245,7 +245,7 @@ public class AddressBookControllerTest {
 					+ "City : Punta Rassa "
 					+ "State : FL "
 					+ "Zip : 33333 "
-					+ "Phone : 000-000-000";
+					+ "Phone : 239-154-9584";
 
 		assertEquals("Sort Test", expected, controller.printEntries());
 	}
@@ -263,11 +263,11 @@ public class AddressBookControllerTest {
 	 */
 	@Test
 	public void testSortZIPDescending() {
-		controller.addPerson("Joe", "Bob", "kowloon ln", "Punta Rassa", "FL", "33331", "000-000-000");
-		controller.addPerson("Jill", "Bob", "kowloon ln", "Punta Rassa", "FL", "33332", "000-000-000");
-		controller.addPerson("Jan", "Bob", "kowloon ln", "Punta Rassa", "FL", "33433", "000-000-000");
-		controller.addPerson("Zeke", "Bob", "kowloon ln", "Punta Rassa", "FL", "13333", "000-000-000");
-		controller.addPerson("Andrew", "Bob", "kowloon ln", "Punta Rassa", "FL", "33633", "000-000-000");
+		controller.addPerson("Joe", "Bob", "kowloon ln", "Punta Rassa", "FL", "33331", "239-154-9584");
+		controller.addPerson("Jill", "Bob", "kowloon ln", "Punta Rassa", "FL", "33332", "239-154-9584");
+		controller.addPerson("Jan", "Bob", "kowloon ln", "Punta Rassa", "FL", "33433", "239-154-9584");
+		controller.addPerson("Zeke", "Bob", "kowloon ln", "Punta Rassa", "FL", "13333", "239-154-9584");
+		controller.addPerson("Andrew", "Bob", "kowloon ln", "Punta Rassa", "FL", "33633", "239-154-9584");
 
 		controller.sortValue(2);
 
@@ -281,7 +281,7 @@ public class AddressBookControllerTest {
 					+ "City : Punta Rassa "
 					+ "State : FL "
 					+ "Zip : 33633 "
-					+ "Phone : 000-000-000 "
+					+ "Phone : 239-154-9584 "
 				+ "Person : "
 					+ "serialVersionUID : 1 "
 					+ "LastName : Bob "
@@ -290,7 +290,7 @@ public class AddressBookControllerTest {
 					+ "City : Punta Rassa "
 					+ "State : FL "
 					+ "Zip : 33433 "
-					+ "Phone : 000-000-000 "
+					+ "Phone : 239-154-9584 "
 				+ "Person : "
 					+ "serialVersionUID : 1 "
 					+ "LastName : Bob "
@@ -299,7 +299,7 @@ public class AddressBookControllerTest {
 					+ "City : Punta Rassa "
 					+ "State : FL "
 					+ "Zip : 33332 "
-					+ "Phone : 000-000-000 "
+					+ "Phone : 239-154-9584 "
 				+ "Person : "
 					+ "serialVersionUID : 1 "
 					+ "LastName : Bob "
@@ -308,7 +308,7 @@ public class AddressBookControllerTest {
 					+ "City : Punta Rassa "
 					+ "State : FL "
 					+ "Zip : 33331 "
-					+ "Phone : 000-000-000 "
+					+ "Phone : 239-154-9584 "
 				+ "Person : "
 					+ "serialVersionUID : 1 "
 					+ "LastName : Bob "
@@ -317,7 +317,7 @@ public class AddressBookControllerTest {
 					+ "City : Punta Rassa "
 					+ "State : FL "
 					+ "Zip : 13333 "
-					+ "Phone : 000-000-000";
+					+ "Phone : 239-154-9584";
 
 		assertEquals("Sort Test", expected, controller.printEntries());
 	}
@@ -341,7 +341,7 @@ public class AddressBookControllerTest {
 		String city = "Punta Rassa";
 		String state = "FL";
 		String zip = "33333";
-		String phone = "000-000-000";
+		String phone = "239-154-9584";
 
 		controller.createAddressBook();
 		controller.addPerson(firstName, lastName, address, city, state, zip, phone);
@@ -374,7 +374,7 @@ public class AddressBookControllerTest {
 		String city = "Punta Rassa";
 		String state = "FL";
 		String zip = "33333";
-		String phone = "000-000-000";
+		String phone = "239-154-9584";
 		controller.createAddressBook();
 		
 		controller.addPerson(firstName, lastName, address, city, state, zip, phone);
@@ -388,7 +388,7 @@ public class AddressBookControllerTest {
 			city = "Puntay Rassay";
 			state = "FLY";
 			zip = "3333y";
-			phone = "000-000-000y";
+			phone = "239-154-9584";
 
 			controller.addPerson(firstName, lastName, address, city, state, zip, phone);
 			controller.loadFile(new File("testSave.log"));
@@ -411,7 +411,7 @@ public class AddressBookControllerTest {
 		String city = "Punta Rassa";
 		String state = "FL";
 		String zip = "33333";
-		String phone = "000-000-000";
+		String phone = "239-154-9584";
 
 		controller.addPerson(firstName, lastName, address, city, state, zip, phone);
 
@@ -424,7 +424,7 @@ public class AddressBookControllerTest {
 					"Puntay Rassay", 
 					"FLY", 
 					"3333y", 
-					"000-000-000y");
+					"239-154-9584");
 			controller.loadFile(file);
 
 			String output = "serialVersionUID : 1 "
@@ -454,7 +454,7 @@ public class AddressBookControllerTest {
 		String city = "Punta Rassa";
 		String state = "FL";
 		String zip = "33333";
-		String phone = "000-000-000";
+		String phone = "239-154-9584";
 
 		controller.addPerson(firstName, lastName, address, city, state, zip, phone);
 		controller.addPerson(firstName, lastName, address, city, state, zip, phone);
