@@ -251,70 +251,65 @@ public class AddressBookControllerTest {
 		assertEquals("Sort Test", expected, controller.printEntries());
 	}
 	/**
-	 * TODO
 	 * Test method for sortName descending by lastName
 	 */
 	@Test
 	public void testSortNameLast() {
-		controller.addPerson("Joe", "Bob", "kowloon ln", "Punta Rassa", "FL", "33331", "239-154-9584");
-		controller.addPerson("Jill", "Bob", "kowloon ln", "Punta Rassa", "FL", "33332", "239-154-9584");
-		controller.addPerson("Jan", "Bob", "kowloon ln", "Punta Rassa", "FL", "33433", "239-154-9584");
-		controller.addPerson("Zeke", "Bob", "kowloon ln", "Punta Rassa", "FL", "13333", "239-154-9584");
-		controller.addPerson("Andrew", "Bob", "kowloon ln", "Punta Rassa", "FL", "33633", "239-154-9584");
+		controller.addPerson("Joe", "D", "kowloon ln", "Punta Rassa", "FL", "33333", "239-154-9584");
+		controller.addPerson("Jill", "C", "kowloon ln", "Punta Rassa", "FL", "33333", "239-154-9584");
+		controller.addPerson("Jan", "B", "kowloon ln", "Punta Rassa", "FL", "33333", "239-154-9584");
+		controller.addPerson("Zeke", "E", "kowloon ln", "Punta Rassa", "FL", "33333", "239-154-9584");
+		controller.addPerson("Andrew", "A", "kowloon ln", "Punta Rassa", "FL", "33333", "239-154-9584");
 
-		controller.sortValue(0);
 
-		String expected = "serialVersionUID : 1 "
-				+ "Entries :  "
-					+ "Person : "
-						+ "serialVersionUID : 1 "
-						+ "LastName : Bob "
-						+ "FirstName : Joe "
-						+ "Address : kowloon ln "
-						+ "City : Punta Rassa "
-						+ "State : FL "
-						+ "Zip : 33331 "
-						+ "Phone : 239-154-9584 "
-					+ "Person : "
-						+ "serialVersionUID : 1 "
-						+ "LastName : Bob "
-						+ "FirstName : Jill "
-						+ "Address : kowloon ln "
-						+ "City : Punta Rassa "
-						+ "State : FL "
-						+ "Zip : 33332 "
-						+ "Phone : 239-154-9584 "
-					+ "Person : serialVersion"
-						+ "UID : 1 "
-						+ "LastName : Bob "
-						+ "FirstName : Jan "
-						+ "Address : kowloon ln "
-						+ "City : Punta Rassa "
-						+ "State : FL "
-						+ "Zip : 33433 "
-						+ "Phone : 239-154-9584 "
-					+ "Person : "
-						+ "serialVersionUID : 1 "
-						+ "LastName : Bob "
-						+ "FirstName : Zeke "
-						+ "Address : kowloon ln "
-						+ "City : Punta Rassa "
-						+ "State : FL "
-						+ "Zip : 13333 "
-						+ "Phone : 239-154-9584 "
-					+ "Person : "
-						+ "serialVersionUID : 1 "
-						+ "LastName : Bob "
-						+ "FirstName : Andrew "
-						+ "Address : kowloon ln "
-						+ "City : Punta Rassa "
-						+ "State : FL "
-						+ "Zip : 33633 "
-						+ "Phone : 239-154-9584";
+
+		String expected = "serialVersionUID : 1 Entries :  "
+				+ "Person : serialVersionUID : 1 "
+					+ "LastName : A "
+					+ "FirstName : Andrew "
+					+ "Address : kowloon ln "
+					+ "City : Punta Rassa "
+					+ "State : FL "
+					+ "Zip : 33333 "
+					+ "Phone : 239-154-9584 "
+				+ "Person : "
+					+ "serialVersionUID : 1 "
+					+ "LastName : B "
+					+ "FirstName : Jan "
+					+ "Address : kowloon ln "
+					+ "City : Punta Rassa "
+					+ "State : FL "
+					+ "Zip : 33333 "
+					+ "Phone : 239-154-9584 "
+				+ "Person : "
+					+ "serialVersionUID : 1 "
+					+ "LastName : C "
+					+ "FirstName : Jill "
+					+ "Address : kowloon ln "
+					+ "City : Punta Rassa "
+					+ "State : FL Zip : 33333 "
+					+ "Phone : 239-154-9584 "
+				+ "Person : "
+					+ "serialVersionUID : 1 "
+					+ "LastName : D "
+					+ "FirstName : Joe "
+					+ "Address : kowloon ln "
+					+ "City : Punta Rassa "
+					+ "State : FL "
+					+ "Zip : 33333 "
+					+ "Phone : 239-154-9584 "
+				+ "Person : "
+					+ "serialVersionUID : 1 "
+					+ "LastName : E "
+					+ "FirstName : Zeke "
+					+ "Address : kowloon ln "
+					+ "City : Punta Rassa "
+					+ "State : FL "
+					+ "Zip : 33333 "
+					+ "Phone : 239-154-9584";
 
 		assertEquals("Sort Test", expected, controller.printEntries());
 	}
-
 	/**
 	 * Test method for sortZIP descending
 	 */
@@ -379,14 +374,68 @@ public class AddressBookControllerTest {
 		assertEquals("Sort Test", expected, controller.printEntries());
 	}
 	/**
-	 * TODO
 	 * Test method for sortZIP ascending
 	 */
 	@Test
 	public void testSortZIPAscending() {
+		controller.addPerson("Joe", "Bob", "kowloon ln", "Punta Rassa", "FL", "33331", "239-154-9584");
+		controller.addPerson("Jill", "Bob", "kowloon ln", "Punta Rassa", "FL", "33332", "239-154-9584");
+		controller.addPerson("Jan", "Bob", "kowloon ln", "Punta Rassa", "FL", "33433", "239-154-9584");
+		controller.addPerson("Zeke", "Bob", "kowloon ln", "Punta Rassa", "FL", "13333", "239-154-9584");
+		controller.addPerson("Andrew", "Bob", "kowloon ln", "Punta Rassa", "FL", "33633", "239-154-9584");
 
+		controller.sortValue(3);
+
+		String expected = "serialVersionUID : 1 "
+				+ "Entries :  "
+					+ "Person : "
+						+ "serialVersionUID : 1 "
+						+ "LastName : Bob "
+						+ "FirstName : Zeke "
+						+ "Address : kowloon ln "
+						+ "City : Punta Rassa "
+						+ "State : FL "
+						+ "Zip : 13333 "
+						+ "Phone : 239-154-9584 "
+					+ "Person : "
+						+ "serialVersionUID : 1 "
+						+ "LastName : Bob "
+						+ "FirstName : Joe "
+						+ "Address : kowloon ln "
+						+ "City : Punta Rassa "
+						+ "State : FL "
+						+ "Zip : 33331 "
+						+ "Phone : 239-154-9584 "
+					+ "Person : "
+						+ "serialVersionUID : 1 "
+						+ "LastName : Bob "
+						+ "FirstName : Jill "
+						+ "Address : kowloon ln "
+						+ "City : Punta Rassa "
+						+ "State : FL "
+						+ "Zip : 33332 "
+						+ "Phone : 239-154-9584 "
+					+ "Person : "
+						+ "serialVersionUID : 1 "
+						+ "LastName : Bob "
+						+ "FirstName : Jan "
+						+ "Address : kowloon ln "
+						+ "City : Punta Rassa "
+						+ "State : FL "
+						+ "Zip : 33433 "
+						+ "Phone : 239-154-9584 "
+					+ "Person : "
+						+ "serialVersionUID : 1 "
+						+ "LastName : Bob "
+						+ "FirstName : Andrew "
+						+ "Address : kowloon ln "
+						+ "City : Punta Rassa "
+						+ "State : FL "
+						+ "Zip : 33633 "
+						+ "Phone : 239-154-9584";
+
+		assertEquals("Sort Test", expected, controller.printEntries());
 	}
-
 	/**
 	 * Test method for createAddressBook.
 	 */
@@ -540,12 +589,33 @@ public class AddressBookControllerTest {
 
 	}
 	/*
-	 * TODO
 	 * test for get data points
 	 */
 	@Test
 	public void testGetDataPoints(){
+		String firstName = "Joe";
+		String lastName = "Bob";
+		String address = "kowloon ln";
+		String city = "Punta Rassa";
+		String state = "FL";
+		String zip = "33333";
+		String phone = "000-000-000";
+			
+		controller.addPerson(firstName, lastName, address, city, state, zip, phone);
 		
+		String firstName1 = "Bob";
+		String lastName1 = "joe";
+		String address1 = "Raintree ln";
+		String city1 = "Punta Rassa";
+		String state1 = "FL";
+		String zip1 = "33333";
+		String phone1 = "000-000-000";
+		controller.addPerson(firstName1, lastName1, address1, city1, state1, zip1, phone1);
+		
+		String[][] output = {{lastName,firstName,phone,address,city,state,zip},
+				{lastName1,firstName1,phone1,address1,city1,state1,zip1}};
+		
+		assertArrayEquals(output, controller.getEntriesDataPoints());
 	}
 
 }

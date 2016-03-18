@@ -156,13 +156,8 @@ public class AddressBookController {
 		}
 
 		FileSystem filesystem = new FileSystem();
-		try {
-			filesystem.saveFile(addressBook, file);
-			return true;
-		} catch (IOException e) {
-			e.printStackTrace();
-			return false;
-		}
+		filesystem.saveFile(addressBook, file);
+		return true;
 	}
 
 	/*
@@ -175,13 +170,8 @@ public class AddressBookController {
 		}
 
 		FileSystem filesystem = new FileSystem();
-		try {
-			filesystem.saveFile(addressBook, file);
-			return true;
-		} catch (IOException e) {
-			e.printStackTrace();
-			return false;
-		}
+		filesystem.saveFile(addressBook, file);
+		return true;
 	}
 
 	/*
