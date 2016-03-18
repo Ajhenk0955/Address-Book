@@ -9,7 +9,6 @@ import javax.swing.filechooser.FileFilter;
  */
 public class SimpleButtonFileDialog{
 	private JComponent parent;
-	private static final long serialVersionUID = -7420046733606681888L;
 	/**
 	 * 
 	 * @param Center_piece

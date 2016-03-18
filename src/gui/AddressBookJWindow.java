@@ -1,6 +1,5 @@
 import java.awt.BorderLayout;
 import java.awt.GridBagLayout;
-import java.awt.EventQueue;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
@@ -26,16 +25,8 @@ public class AddressBookJWindow {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					@SuppressWarnings("unused")
-					AddressBookJWindow window = new AddressBookJWindow();
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+		@SuppressWarnings("unused")
+		AddressBookJWindow window = new AddressBookJWindow();
 	}
 
 	/**
