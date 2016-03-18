@@ -10,7 +10,7 @@ import java.util.Comparator;
  *  0 o1 == o2
  *  1 o1 > 02
  */
-enum PersonComparator implements Comparator<Person> {
+public enum PersonComparator implements Comparator<Person> {
 
 	/*
 	 * used for sorting zip codes
