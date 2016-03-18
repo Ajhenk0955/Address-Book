@@ -11,7 +11,7 @@ public class Person implements Serializable {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
+	public static final long serialVersionUID = 1L;
 	private String firstName;
 	private String lastName;
 	private String address;
@@ -152,6 +152,10 @@ public class Person implements Serializable {
 		out += " Phone : " + phone;
 		return out;
 	}
+	
+	/*
+	 * returns a string array of the data
+	 */
 	public String[] getDataPoints(){
 		return new String[]{
 				lastName,
@@ -163,6 +167,10 @@ public class Person implements Serializable {
 				zip
 		};
 	}
+	
+	/*
+	 * returns size of the data
+	 */
 	public int getNumDataPoints(){
 		return getDataPoints().length;
 	}
