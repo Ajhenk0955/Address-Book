@@ -207,7 +207,40 @@ public class AddressBookControllerTest {
 	 */
 	@Test
 	public void testSaveAddressBook() {
-		fail("Not yet implemented");
+		String firstName = "Joe";
+		String lastName = "Bob";
+		String address = "kowloon ln";
+		String city = "Punta Rassa";
+		String state = "FL";
+		String zip = "33333";
+		String phone = "000-000-000";
+
+		controller.addPerson(firstName, lastName, address, city, state, zip, phone);
+
+		boolean success = controller.updateAddressBook(new File("testSave.log"));
+
+		if (success) {
+			firstName = "Joey";
+			lastName = "Bobby";
+			address = "kowloony lny";
+			city = "Puntay Rassay";
+			state = "FLY";
+			zip = "3333y";
+			phone = "000-000-000y";
+
+			controller.addPerson(firstName, lastName, address, city, state, zip, phone);
+
+			try {
+				controller.loadFile(new File("testSave.log"));
+			} catch (IOException e) {
+				fail("Failed to load file");
+				e.printStackTrace();
+			}
+
+			String output = "kowloon ln Punta Rassa Joe Bob 000-000-000 FL 33333 ";
+
+			assertEquals("Print Test", output, controller.printEntries());
+		}
 	}
 
 	/**
