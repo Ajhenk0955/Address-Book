@@ -33,6 +33,9 @@ public class AddressBookControllerTest {
 	}
 	private void addTestFile(){
 		file = new File("testSave.adbk");
+		controller = new AddressBookController(null);
+		controller.createAddressBook();
+		
 		controller.addPerson("Isaac", "Gainey", "Se 17", "Cape", "Fl", "33990", "239 555 8875");
 		controller.addPerson("Luke", "Gainey", "Se 17", "Cape", "Fl", "33990", "239 555 80008");
 		controller.addPerson("Jess", "River", "Crement Block", "North Fort", "Florida", "33904", "239 555 5127");
