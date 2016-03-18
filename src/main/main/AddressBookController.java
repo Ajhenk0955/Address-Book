@@ -3,6 +3,8 @@ package main;
 import java.io.File;
 import java.io.IOException;
 import java.util.Collections;
+import java.util.Comparator;
+
 import static main.PersonComparator.*;
 
 /*
@@ -75,76 +77,35 @@ public class AddressBookController {
 	}
 
 	/*
-	 * Sorts by first name
+	 * sorts based on the value using a switch to set the comparator
+	 * 0 = firstNameSortAscending
+	 * 1 = lastNameSortAscending
+	 * 2 = zipSort descending
+	 * 3 = zipSort ascending
 	 */
-	public boolean sortFirstName() {
-		try {
-			Collections.sort(addressBook.entries, (getComparator(FIRST_NAME_SORT)));
-			return true;
-		} catch (Exception e) {
-			e.printStackTrace();
+	public boolean sortValue(int option) {
+		Comparator compare = null;
+		if(option == -1){
 			return false;
 		}
-	}
-
-	/*
-	 * Sorts by last name
-	 */
-	boolean sortLastName() {
-		try {
-			Collections.sort(addressBook.entries, (getComparator(LAST_NAME_SORT)));
-			return true;
-		} catch (Exception e) {
-			e.printStackTrace();
-			return false;
+		switch(option){
+		case 0: // first name
+			compare = getComparator(FIRST_NAME_SORT);
+			break;
+		case 1: // last name
+			compare = getComparator(LAST_NAME_SORT);
+			break;
+		case 2: // sortZIP
+			compare = decending(getComparator(ZIP_SORT));
+			break;
+		case 3: // zip
+			compare = getComparator(ZIP_SORT);
+			break;
 		}
-	}
-
-	/*
-	 * Sorts by zip
-	 */
-	public boolean sortZIP() {
+		
+		
 		try {
-			Collections.sort(addressBook.entries, decending(getComparator(ZIP_SORT)));
-			return true;
-		} catch (Exception e) {
-			e.printStackTrace();
-			return false;
-		}
-	}
-
-	/*
-	 * Sorts by last name
-	 */
-	boolean sortAddress() {
-		try {
-			Collections.sort(addressBook.entries, (getComparator(LAST_NAME_SORT)));
-			return true;
-		} catch (Exception e) {
-			e.printStackTrace();
-			return false;
-		}
-	}
-
-	/*
-	 * Sorts by last name
-	 */
-	boolean sortState() {
-		try {
-			Collections.sort(addressBook.entries, (getComparator(LAST_NAME_SORT)));
-			return true;
-		} catch (Exception e) {
-			e.printStackTrace();
-			return false;
-		}
-	}
-
-	/*
-	 * Sorts by last name
-	 */
-	boolean sortCity() {
-		try {
-			Collections.sort(addressBook.entries, (getComparator(LAST_NAME_SORT)));
+			Collections.sort(addressBook.entries, compare);
 			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
