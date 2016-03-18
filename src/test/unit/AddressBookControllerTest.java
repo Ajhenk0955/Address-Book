@@ -617,5 +617,45 @@ public class AddressBookControllerTest {
 		
 		assertArrayEquals(output, controller.getEntriesDataPoints());
 	}
+	@Test
+	public void invalidSortTest(){
+		assertFalse(controller.sortValue(-1));
+	}
+	@Test
+	public void invalidUpdateBookTest(){
+		assertFalse(controller.updateAddressBook(null));
+		File file = new File("null.jok");
+		assertFalse(controller.updateAddressBook(file) );
+	}
+	@Test
+	public void testGetPerson() {
+		controller.addPerson("Joe", "Bob", "kowloon ln", "Punta Rassa", "FL", "33331", "239-154-9584");
+		controller.addPerson("Jill", "Bob", "kowloon ln", "Punta Rassa", "FL", "33332", "239-154-9584");
+		controller.addPerson("Jan", "Bob", "kowloon ln", "Punta Rassa", "FL", "33433", "239-154-9584");
+		controller.addPerson("Zeke", "Bob", "kowloon ln", "Punta Rassa", "FL", "13333", "239-154-9584");
+		controller.addPerson("Andrew", "Bob", "kowloon ln", "Punta Rassa", "FL", "33633", "239-154-9584");
+
+		Person p = new Person("Jan", "Bob", "kowloon ln", "Punta Rassa", "FL", "33433", "239-154-9584");
+		assertEquals("getPerson Test : " + p.toString()+ 
+					 " :: " + controller.getPerson(p.getLastName(),p.getFirstName()),
+				p.toString(),
+				controller.getPerson(p.getLastName(),p.getFirstName()).toString());
+	}
+	@Test
+	public void InvalidLoadFileTest() throws IOException{
+		assertFalse(controller.loadFile(null));
+	}
+	@Test
+	public void InvalidSaveAddressBook(){
+		assertFalse(controller.saveAddressBook(null));
+		assertFalse(controller.saveAddressBook());
+	}
+	@Test
+	public void saveAddressBook(){
+		assertTrue(controller.saveAddressBook(file));
+		controller.updateAddressBook(file);
+		assertTrue(controller.saveAddressBook());
+	}
+	
 
 }
