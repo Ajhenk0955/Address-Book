@@ -1,20 +1,19 @@
-package gui;
-
-import java.awt.Component;
 import java.io.File;
-import java.nio.file.Path;
-
-import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileFilter;
-
+/**
+ * 
+ * @author eyez
+ *
+ */
 public class SimpleButtonFileDialog{
 	private JComponent parent;
+	private static final long serialVersionUID = -7420046733606681888L;
 	/**
 	 * 
+	 * @param Center_piece
 	 */
-	private static final long serialVersionUID = -7420046733606681888L;
-
 	public SimpleButtonFileDialog(JComponent Center_piece) {
 		parent = Center_piece;
 	}
@@ -69,7 +68,7 @@ public class SimpleButtonFileDialog{
 		for (int i = 0; i < description.length; i++)
 			fileFinder.addChoosableFileFilter(new SimpleFileFilter(extension_types[i], description[i]));
 
-		if (fileFinder.showOpenDialog(this) == JFileChooser.APPROVE_OPTION)
+		if (fileFinder.showOpenDialog(parent) == JFileChooser.APPROVE_OPTION)
 			return fileFinder.getSelectedFile();
 		else
 			return null;
@@ -164,7 +163,9 @@ class SimpleFileFilter extends FileFilter {
 		// Make sure we have a valid (if simplistic) description
 		description = (descr == null ? exts[0] + " files" : descr);
 	}
-
+	/**
+	 * 
+	 */
 	public boolean accept(File f) {
 		// We always allow directories, regardless of their extension
 		if (f.isDirectory()) {
@@ -180,7 +181,8 @@ class SimpleFileFilter extends FileFilter {
 		}
 		return false;
 	}
-
+	/**
+	 */
 	public String getDescription() {
 		return description;
 	}

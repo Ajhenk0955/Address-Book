@@ -1,21 +1,24 @@
-package gui;
+import java.awt.BorderLayout;
+import java.awt.GridBagLayout;
+import java.awt.EventQueue;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
-import java.awt.BorderLayout;
 import javax.swing.JScrollPane;
 import javax.swing.JPanel;
-import java.awt.GridBagLayout;
 import javax.swing.JButton;
-import java.awt.GridBagConstraints;
-import java.awt.GridLayout;
-import java.awt.Insets;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JLabel;
-import javax.swing.ListSelectionModel;
+
+import main.AddressBookController;
+import main.Person;
 
 public class AddressBookJWindow {
-	private AddressBookController addrBookCtrl = new AddressBookController(null);
+	private AddressBookController addrBook = new AddressBookController(null);
 	private JFrame frmAddressBooklet;
 	private JTable table;
 
@@ -23,8 +26,16 @@ public class AddressBookJWindow {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		AddressBookJWindow window = new AddressBookJWindow();
-		window.frmAddressBooklet.setVisible(true);
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					@SuppressWarnings("unused")
+					AddressBookJWindow window = new AddressBookJWindow();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
 	}
 
 	/**
@@ -43,6 +54,7 @@ public class AddressBookJWindow {
 		frmAddressBooklet.setBounds(100, 100, 520, 300);
 		frmAddressBooklet.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmAddressBooklet.getContentPane().setLayout(new BorderLayout(0, 0));
+		frmAddressBooklet.setVisible(true);
 
 		JPanel panel = new JPanel();
 		frmAddressBooklet.getContentPane().add(panel, BorderLayout.NORTH);
@@ -53,11 +65,10 @@ public class AddressBookJWindow {
 				Double.MIN_VALUE };
 		gbl_panel.rowWeights = new double[] { 1.0, Double.MIN_VALUE };
 		panel.setLayout(gbl_panel);
-		
-		SimpleButtonFileDialog fileDialog = new SimpleButtonFileDialog(this);
-		
+
 		JButton btnLoad = new JButton("Load");
-		btnLoad.addActionListener(new LoadAction(fileDialog, addrBookCtrl));
+		SimpleButtonFileDialog fileDialog = new SimpleButtonFileDialog(btnLoad);
+		btnLoad.addActionListener(new LoadAction(fileDialog));
 		GridBagConstraints gbc_btnLoad = new GridBagConstraints();
 		gbc_btnLoad.anchor = GridBagConstraints.NORTHWEST;
 		gbc_btnLoad.insets = new Insets(0, 0, 0, 5);
@@ -66,7 +77,7 @@ public class AddressBookJWindow {
 		panel.add(btnLoad, gbc_btnLoad);
 
 		JButton btnSave = new JButton("Save");
-		btnSave.addActionListener(new LoadAction(fileDialog, addrBookCtrl));
+		btnSave.addActionListener(new LoadAction(fileDialog));
 		GridBagConstraints gbc_btnSave = new GridBagConstraints();
 		gbc_btnSave.insets = new Insets(0, 0, 0, 5);
 		gbc_btnSave.anchor = GridBagConstraints.NORTHWEST;
@@ -111,7 +122,6 @@ public class AddressBookJWindow {
 
 		JScrollPane scrollPane = new JScrollPane();
 		frmAddressBooklet.getContentPane().add(scrollPane, BorderLayout.CENTER);
-		String[][] entries = addrBookCtrl.getEntriesDataPoints(); 
 		table = new JTable();
 		updateTable();
 		scrollPane.setViewportView(table);
@@ -119,95 +129,141 @@ public class AddressBookJWindow {
 		JLabel label = new JLabel("        ");
 		scrollPane.setRowHeaderView(label);
 	}
-	private updateTable(){
+	private void updateTable(){
 		table.setModel(new DefaultTableModel(
-				entries,
+				addrBook.getEntriesDataPoints(),
 				new String[] { "Last Name", "First Name", "Phone Number", "Street Address", "City", "State",
-						"ZIP code" }) {
+				"ZIP code" }) {
+					private static final long serialVersionUID = 3361446288819744958L;
+			@SuppressWarnings("rawtypes")
 			Class[] columnTypes = new Class[] { String.class, String.class, String.class, String.class, String.class,
 					String.class, String.class };
 
+			@SuppressWarnings({ "unchecked", "rawtypes" })
 			public Class getColumnClass(int columnIndex) {
 				return columnTypes[columnIndex];
 			}
 		});
 	}
-}
-class LoadAction implements ActionListener{
-	private SimpleButtonFileDialog dialogBox;
-	private AddressBookController addrBook;
-	/**
-	 * 
-	 * @param fileDialog
-	 * @param addrBookCtrl
-	 */
-	public LoadAction(SimpleButtonFileDialog fileDialog, AddressBookController addrBookCtrl){
-		dialogBox = fileDialog;
-		addrBook = addrBookCtrl;
-	}
-	/**
-	 * 
-	 * @param e
-	 */
-	void actionPerformed(ActionEvent e){
-		try{
-			addrBook.LoadAddressBook(dialogBox.toLoadFile());
-		}catch(IOException e1){
-			JOptionPane.showMessageDialog(new JFrame(),
-				    "File Loading Error",
-				    "File Error",
-				    JOptionPane.ERROR_MESSAGE);
+
+	class LoadAction implements ActionListener{
+		private SimpleButtonFileDialog dialogBox;
+		/**
+		 * 
+		 * @param fileDialog
+		 * @param addrBookCtrl
+		 */
+		public LoadAction(SimpleButtonFileDialog fileDialog){
+			dialogBox = fileDialog;
+		}
+		/**
+		 * 
+		 * @param e
+		 */
+		public void actionPerformed(ActionEvent e){
+			addrBook.saveAddressBook(dialogBox.toLoadFile());
+			updateTable();
 		}
 	}
-}
-class SaveAction implements ActionListener{
-	private SimpleButtonFileDialog dialogBox;
-	private AddressBookController addrBook;
-	/**
-	 * 
-	 * @param fileDialog
-	 * @param addrBookCtrl
-	 */
-	public SaveAction(SimpleButtonFileDialog fileDialog, AddressBookController addrBookCtrl){
-		dialogBox = fileDialog;
-		addrBook = addrBookCtrl;
+	class SaveAction implements ActionListener{
+		private SimpleButtonFileDialog dialogBox;
+		/**
+		 * 
+		 * @param fileDialog
+		 * @param addrBookCtrl
+		 */
+		public SaveAction(SimpleButtonFileDialog fileDialog){
+			dialogBox = fileDialog;
+		}
+		/**
+		 * 
+		 * @param e
+		 */
+		public void actionPerformed(ActionEvent e){
+			addrBook.saveAddressBook(dialogBox.toSaveFile());
+			updateTable();
+		}
 	}
-	/**
-	 * 
-	 * @param e
-	 */
-	void actionPerformed(ActionEvent e){
-		addrBook.SaveAddressBook(dialogBox.toSaveFile());
+	class FindAction implements ActionListener{
+		/**
+		 * 
+		 * @param e
+		 */
+		public void actionPerformed(ActionEvent e){
+			String[] data = new PersonEdit("Search Filters").getOutput();
+			Person p = addrBook.getPerson(data[0], data[1]);
+			String[][] person = new String[][]{p.getDataPoints()};
+			
+			table.setModel(new DefaultTableModel(
+					person,
+					new String[] { "Last Name", "First Name", "Phone Number", "Street Address", "City", "State",
+					"ZIP code" }) {
+						private static final long serialVersionUID = 3361446288819744958L;
+				@SuppressWarnings("rawtypes")
+				Class[] columnTypes = new Class[] { String.class, String.class, String.class, String.class, String.class,
+						String.class, String.class };
+
+				@SuppressWarnings({ "unchecked", "rawtypes" })
+				public Class getColumnClass(int columnIndex) {
+					return columnTypes[columnIndex];
+				}
+			});
+		}
 	}
-}
-class FindAction implements ActionListener{
-	/**
-	 * 
-	 * @param e
-	 */
-	void actionPerformed(ActionEvent e){
+	class AddAction implements ActionListener{
+		/**
+		 * 
+		 * @param e
+		 */
+		public void actionPerformed(ActionEvent e){
+			String[] data= new PersonEdit("Add Contract").getOutput();
+			addrBook.addPerson(data[1],//first 
+					data[0], //last
+					data[3], //Street
+					data[4], //city
+					data[5], //state
+					data[6], //zip
+					data[2]);//phone
+			updateTable();
+		}
 	}
-}
-class AddAction implements ActionListener{
-	/**
-	 * 
-	 * @param e
-	 */
-	void actionPerformed(ActionEvent e){
+	class EditAction implements ActionListener{
+		/**
+		 * 
+		 * @param e
+		 */
+		public void actionPerformed(ActionEvent e){
+			int row = table.getSelectedRow();
+			String[] in_data = {(String) table.getValueAt(row, 0),
+					(String) table.getValueAt(row, 1),
+					(String) table.getValueAt(row, 2),
+					(String) table.getValueAt(row, 3),
+					(String) table.getValueAt(row, 4),
+					(String) table.getValueAt(row, 5),
+					(String) table.getValueAt(row, 6)};
+			String[] out_data = new PersonEdit("Edit Contact", in_data).getOutput();
+			addrBook.editPerson(row, 
+					out_data[1],//first 
+					out_data[0], //last
+					out_data[3], //street
+					out_data[4], //city
+					out_data[5], //state
+					out_data[6], //zip
+					out_data[2]);//phone
+			updateTable();
+		}
 	}
-}
-class EditAction implements ActionListener{
-	/**
-	 * 
-	 * @param e
-	 */
-	void actionPerformed(ActionEvent e){
-	}
-}class FilterAction implements ActionListener{
-	/**
-	 * 
-	 * @param e
-	 */
-	void actionPerformed(ActionEvent e){
+	class FilterAction implements ActionListener{
+		public FilterAction(){
+		}
+		/**
+		 * 
+		 * @param e
+		 */
+		public void actionPerformed(ActionEvent e){
+			int Selection = new filterWindow().getEnum();
+			addrBook.sortValue(Selection);
+			updateTable();
+		}
 	}
 }
