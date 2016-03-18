@@ -60,13 +60,13 @@ public class AddressBookControllerTest {
 				+ "Entries :  "
 					+ "Person : "
 						+ "serialVersionUID : 1 "
-						+ "LastName : Bob "
-						+ "FirstName : Joe "
-						+ "Address : kowloon ln "
-						+ "City : Punta Rassa "
-						+ "State : FL "
-						+ "Zip : 33333 "
-						+ "Phone : 000-000-000";
+						+ "LastName : " + lastName
+						+ " FirstName : " + firstName
+						+ " Address : " + address
+						+ " City : " + city
+						+ " State : " + state
+						+ " Zip : " + zip
+						+ " Phone : " + phone;
 		assertEquals("add a person", output, controller.printEntries());
 	}
 	/**
@@ -103,20 +103,21 @@ public class AddressBookControllerTest {
 		String phone = "000-000-000";
 
 		controller.addPerson(firstName, lastName, address, city, state, zip, phone);
-
 		// now editing person
 		city = "Miami";
+		
 		String output = "serialVersionUID : 1 "
 				+ "Entries :  "
 					+ "Person : "
 						+ "serialVersionUID : 1 "
-						+ "LastName : Bob "
-						+ "FirstName : Joe "
-						+ "Address : kowloon ln "
-						+ "City : Punta Rassa "
-						+ "State : FL "
-						+ "Zip : 33333 "
-						+ "Phone : 000-000-000";
+						+ "LastName : " + lastName
+						+ " FirstName : " + firstName
+						+ " Address : " + address
+						+ " City : " + city
+						+ " State : " + state
+						+ " Zip : " + zip
+						+ " Phone : " + phone;
+		
 		controller.editPerson(index, firstName, lastName, address, city, state, zip, phone);
 		assertEquals("edit a person", output, controller.printEntries());
 
@@ -417,28 +418,26 @@ public class AddressBookControllerTest {
 		boolean success = controller.saveAddressBook(file);
 
 		if (success) {
-			firstName = "Joey";
-			lastName = "Bobby";
-			address = "kowloony lny";
-			city = "Puntay Rassay";
-			state = "FLY";
-			zip = "3333y";
-			phone = "000-000-000y";
-
-			controller.addPerson(firstName, lastName, address, city, state, zip, phone);
+			controller.addPerson("Joey", 
+					"Bobby",  
+					"kowloony lny", 
+					"Puntay Rassay", 
+					"FLY", 
+					"3333y", 
+					"000-000-000y");
 			controller.loadFile(file);
 
 			String output = "serialVersionUID : 1 "
 					+ "Entries :  "
 						+ "Person : "
 							+ "serialVersionUID : 1 "
-							+ "LastName : Bob "
-							+ "FirstName : Joe "
-							+ "Address : kowloon ln "
-							+ "City : Punta Rassa "
-							+ "State : FL "
-							+ "Zip : 33333 "
-							+ "Phone : 000-000-000";
+							+ "LastName : " + lastName
+							+ " FirstName : " + firstName
+							+ " Address : " + address
+							+ " City : " + city
+							+ " State : " + state
+							+ " Zip : " + zip
+							+ " Phone : " + phone;
 
 			assertEquals("Print Test", output, controller.printEntries());
 		}
@@ -463,22 +462,22 @@ public class AddressBookControllerTest {
 				+ "Entries :  "
 					+ "Person : "
 						+ "serialVersionUID : 1 "
-						+ "LastName : Bob "
-						+ "FirstName : Joe "
-						+ "Address : kowloon ln "
-						+ "City : Punta Rassa "
-						+ "State : FL "
-						+ "Zip : 33333 "
-						+ "Phone : 000-000-000 "
-					+ "Person : "
+						+ "LastName : " + lastName
+						+ " FirstName : " + firstName
+						+ " Address : " + address
+						+ " City : " + city
+						+ " State : " + state
+						+ " Zip : " + zip
+						+ " Phone : " + phone
+					+ " Person : "
 						+ "serialVersionUID : 1 "
-						+ "LastName : Bob "
-						+ "FirstName : Joe "
-						+ "Address : kowloon ln "
-						+ "City : Punta Rassa "
-						+ "State : FL "
-						+ "Zip : 33333 "
-						+ "Phone : 000-000-000";
+						+ "LastName : " + lastName
+						+ " FirstName : " + firstName
+						+ " Address : "+  address
+						+ " City : " + city
+						+ " State : " + state
+						+ " Zip : " + zip
+						+ " Phone : " + phone;
 
 		assertEquals("Print Test", output, controller.printEntries());
 
