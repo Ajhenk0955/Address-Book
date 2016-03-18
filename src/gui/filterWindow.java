@@ -34,7 +34,7 @@ public class filterWindow {
 	 * Initialize the contents of the frame.
 	 */
 	private int initialize() {
-		Filter = new JFrame("Filter Options");
+		Filter = new JFrame("Sort Options");
 		Filter.setBounds(100, 100, 265, 118);
 		Filter.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		

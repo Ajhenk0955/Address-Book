@@ -4,6 +4,9 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
@@ -104,13 +107,13 @@ public class AddressBookWindow {
 		gbc_btnEdit.gridy = 0;
 		panel.add(btnEdit, gbc_btnEdit);
 
-		JButton btnFilter = new JButton("Filter");
-		btnFilter.addActionListener(new FilterAction());
-		GridBagConstraints gbc_btnFilter = new GridBagConstraints();
-		gbc_btnFilter.anchor = GridBagConstraints.EAST;
-		gbc_btnFilter.gridx = 11;
-		gbc_btnFilter.gridy = 0;
-		panel.add(btnFilter, gbc_btnFilter);
+		JButton btnSort = new JButton("Sort");
+		btnSort.addActionListener(new SortAction());
+		GridBagConstraints gbc_btnSort = new GridBagConstraints();
+		gbc_btnSort.anchor = GridBagConstraints.NORTHEAST;
+		gbc_btnSort.gridx = 11;
+		gbc_btnSort.gridy = 0;
+		panel.add(btnSort, gbc_btnSort);
 
 		JScrollPane scrollPane = new JScrollPane();
 		frmAddressBooklet.getContentPane().add(scrollPane, BorderLayout.CENTER);
@@ -120,7 +123,13 @@ public class AddressBookWindow {
 
 		JLabel label = new JLabel("        ");
 		scrollPane.setRowHeaderView(label);
+		
+		frmAddressBooklet.invalidate();
+		frmAddressBooklet.repaint();
 	}
+	/**
+	 * 
+	 */
 	private void updateTable(){
 		table.setModel(new DefaultTableModel(
 				addrBook.getEntriesDataPoints(),
@@ -137,9 +146,14 @@ public class AddressBookWindow {
 			}
 		});
 	}
-
+	/**
+	 * 
+	 * @author eyez
+	 *
+	 */
 	class LoadAction implements ActionListener{
 		private SimpleButtonFileDialog dialogBox;
+		private Map<String, String[]> file_types = new HashMap<String, String[]>();
 		/**
 		 * 
 		 * @param fileDialog
@@ -150,13 +164,33 @@ public class AddressBookWindow {
 		}
 		/**
 		 * 
+		 */
+		private void loadFileTypes(){
+			//map.put("Title, { file extensions});
+			file_types.put("Address Book File", 
+							new String[]{
+								".adbk"
+			});
+		}
+		/**
+		 * 
 		 * @param e
 		 */
 		public void actionPerformed(ActionEvent e){
-			addrBook.saveAddressBook(dialogBox.toLoadFile());
+			try{
+				addrBook.loadFile(dialogBox.toLoadFile());
+				
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
 			updateTable();
 		}
 	}
+	/**
+	 * 
+	 * @author eyez
+	 *
+	 */
 	class SaveAction implements ActionListener{
 		private SimpleButtonFileDialog dialogBox;
 		/**
@@ -176,14 +210,26 @@ public class AddressBookWindow {
 			updateTable();
 		}
 	}
+	/**
+	 * 
+	 * @author eyez
+	 *
+	 */
 	class FindAction implements ActionListener{
 		/**
 		 * 
 		 * @param e
 		 */
 		public void actionPerformed(ActionEvent e){
-			String[] data = new PersonEdit("Search Filter").getOutput();
-			Person p = addrBook.getPerson(data[0], data[1]);
+			PersonEdit prompt = new PersonEdit("Search Filter");
+			prompt.setNamesPrompt();
+			String[] data = prompt.getOutput();
+			Person p;
+			try{
+				p = addrBook.getPerson(data[0], data[1]);
+			}catch(NullPointerException e4){
+				return;
+			}
 			String[][] person = new String[][]{p.getDataPoints()};
 			
 			table.setModel(new DefaultTableModel(
@@ -202,6 +248,11 @@ public class AddressBookWindow {
 			});
 		}
 	}
+	/**
+	 * 
+	 * @author eyez
+	 *
+	 */
 	class AddAction implements ActionListener{
 		/**
 		 * 
@@ -210,16 +261,25 @@ public class AddressBookWindow {
 		public void actionPerformed(ActionEvent e){
 			String[] data = new PersonEdit("Add Person").getOutput();
 			
-			addrBook.addPerson(data[1],//first 
+			try{
+				addrBook.addPerson(data[1],//first 
 					data[0], //last
 					data[3], //Street
 					data[4], //city
 					data[5], //state
 					data[6], //zip
 					data[2]);//phone
+			}catch(NullPointerException e5){
+				return;
+			}
 			updateTable();
 		}
 	}
+	/**
+	 * 
+	 * @author eyez
+	 *
+	 */
 	class EditAction implements ActionListener{
 		/**
 		 * 
@@ -253,8 +313,13 @@ public class AddressBookWindow {
 			updateTable();
 		}
 	}
-	class FilterAction implements ActionListener{
-		public FilterAction(){
+	/**
+	 * 
+	 * @author eyez
+	 *
+	 */
+	class SortAction implements ActionListener{
+		public SortAction(){
 		}
 		/**
 		 * 
@@ -267,6 +332,11 @@ public class AddressBookWindow {
 			updateTable();
 		}
 	}
+	/**
+	 * 
+	 * @author eyez
+	 *
+	 */
 	class EditRunner implements Runnable{
 		String[] output = null;
 		public void run() {
