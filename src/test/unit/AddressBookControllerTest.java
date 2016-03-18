@@ -11,6 +11,7 @@ import org.junit.Test;
 import junit.framework.Assert;
 import main.AddressBook;
 import main.AddressBookController;
+import main.Person;
 
 /**
  * Unit testing for addressBook controller
@@ -19,7 +20,6 @@ import main.AddressBookController;
 public class AddressBookControllerTest {
 
 	File file;
-	AddressBook addressBook;
 	AddressBookController controller;
 
 	/**
@@ -27,10 +27,18 @@ public class AddressBookControllerTest {
 	 */
 	@Before
 	public void setUp() throws Exception {
-		addressBook = new AddressBook();
-		controller = new AddressBookController(addressBook);
+		addTestFile();
+		controller = new AddressBookController(null);
+		controller.createAddressBook();
 	}
-
+	private void addTestFile(){
+		file = new File("testSave.adbk");
+		controller.addPerson("Isaac", "Gainey", "Se 17", "Cape", "Fl", "33990", "239 555 8875");
+		controller.addPerson("Luke", "Gainey", "Se 17", "Cape", "Fl", "33990", "239 555 80008");
+		controller.addPerson("Jess", "River", "Crement Block", "North Fort", "Florida", "33904", "239 555 5127");
+		
+		controller.saveAddressBook(file);
+	}
 	/**
 	 * Test method for addPerson
 	 */
@@ -328,6 +336,7 @@ public class AddressBookControllerTest {
 
 	/**
 	 * Test method for updateaddressBook.
+	 * upda
 	 */
 	@Test
 	public void testUpdateAddressBook() {
@@ -338,10 +347,11 @@ public class AddressBookControllerTest {
 		String state = "FL";
 		String zip = "33333";
 		String phone = "000-000-000";
-
+		controller.createAddressBook();
+		
 		controller.addPerson(firstName, lastName, address, city, state, zip, phone);
 
-		boolean success = controller.updateAddressBook(new File("testSave.log"));
+		boolean success = controller.updateAddressBook(new File("testSave.adbk"));
 
 		if (success) {
 			firstName = "Joey";
@@ -383,7 +393,7 @@ public class AddressBookControllerTest {
 
 		controller.addPerson(firstName, lastName, address, city, state, zip, phone);
 
-		boolean success = controller.updateAddressBook(new File("testSave.log"));
+		boolean success = controller.updateAddressBook(new File("testSave.adbk"));
 
 		if (success) {
 			firstName = "Joey";
@@ -397,7 +407,7 @@ public class AddressBookControllerTest {
 			controller.addPerson(firstName, lastName, address, city, state, zip, phone);
 
 			try {
-				controller.loadFile(new File("testSave.log"));
+				controller.loadFile(new File("testSave.adbk"));
 			} catch (IOException e) {
 				fail("Failed to load file");
 				e.printStackTrace();
