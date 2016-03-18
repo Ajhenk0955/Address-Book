@@ -41,12 +41,12 @@ public class AddressBookController {
 		
 		//putting array locations with regex values
 		REGEX.put("0", "LASTNAME");
-		REGEX.put("0", "FIRSTNAME");
-		REGEX.put("0", "PHONE");
-		REGEX.put("0", "ADDRESS");
-		REGEX.put("0", "CITY");
-		REGEX.put("0", "STATE");
-		REGEX.put("0", "US-ZIP");
+		REGEX.put("1", "FIRSTNAME");
+		REGEX.put("2", "PHONE");
+		REGEX.put("3", "ADDRESS");
+		REGEX.put("4", "CITY");
+		REGEX.put("5", "STATE");
+		REGEX.put("6", "US-ZIP");
 	}
 
 	/**
@@ -78,6 +78,9 @@ public class AddressBookController {
 	public boolean addPerson(String firstName, String lastName, String address, String city, String state, String zip,
 			String phone) {
 		Person person = new Person(firstName, lastName, address, city, state, zip, phone);
+		if(!verify(person)){
+			return false;
+		}
 		if (!addressBook.entries.contains(person)) {
 			addressBook.entries.add(person);
 			return true;
@@ -96,8 +99,13 @@ public class AddressBookController {
 			return false;
 		} else {
 			try {
-				Person temp = addressBook.entries.get(index);
-				addressBook.entries.set(index, temp);
+				
+				Person person = new Person(firstName, lastName, address, city, state, zip, phone);
+				
+				if(!verify(person)){
+					return false;
+				}
+				addressBook.entries.set(index, person);
 				return true;
 
 			} catch (Exception e) {
