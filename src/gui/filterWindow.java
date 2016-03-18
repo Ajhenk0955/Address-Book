@@ -8,7 +8,11 @@ import javax.swing.JLabel;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-
+/**
+ * Custom prompt to get selected scroll list 
+ * @author eyez
+ *
+ */
 public class filterWindow {
 
 	private JFrame Filter;
@@ -62,6 +66,10 @@ public class filterWindow {
 					0;
 		
 	}
+	/**
+	 *  the avaliable sort functions
+	 * @return String[], text field to be displayed
+	 */
 	private String[] getSort(){
 		List<String> enums = new ArrayList<String>();
 		enums.add("Last Name");

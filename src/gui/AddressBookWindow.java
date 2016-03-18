@@ -128,7 +128,7 @@ public class AddressBookWindow {
 		frmAddressBooklet.repaint();
 	}
 	/**
-	 * 
+	 * Reload the elements to the table
 	 */
 	private void updateTable(){
 		table.setModel(new DefaultTableModel(
@@ -147,7 +147,7 @@ public class AddressBookWindow {
 		});
 	}
 	/**
-	 * 
+	 * Load File action listener
 	 * @author eyez
 	 *
 	 */
@@ -156,8 +156,7 @@ public class AddressBookWindow {
 		private Map<String, String[]> file_types = new HashMap<String, String[]>();
 		/**
 		 * 
-		 * @param fileDialog
-		 * @param addrBookCtrl
+		 * @param fileDialog, The File Dialog to launch on click
 		 */
 		public LoadAction(SimpleButtonFileDialog fileDialog){
 			dialogBox = fileDialog;
@@ -165,6 +164,7 @@ public class AddressBookWindow {
 		/**
 		 * 
 		 */
+		@SuppressWarnings("unused")
 		private void loadFileTypes(){
 			//map.put("Title, { file extensions});
 			file_types.put("Address Book File", 
@@ -173,7 +173,7 @@ public class AddressBookWindow {
 			});
 		}
 		/**
-		 * 
+		 * Autofill
 		 * @param e
 		 */
 		public void actionPerformed(ActionEvent e){
@@ -181,13 +181,13 @@ public class AddressBookWindow {
 				addrBook.loadFile(dialogBox.toLoadFile());
 				
 			} catch (IOException e1) {
-				e1.printStackTrace();
+				return;
 			}
 			updateTable();
 		}
 	}
 	/**
-	 * 
+	 * Save addrbook to file
 	 * @author eyez
 	 *
 	 */
@@ -195,8 +195,7 @@ public class AddressBookWindow {
 		private SimpleButtonFileDialog dialogBox;
 		/**
 		 * 
-		 * @param fileDialog
-		 * @param addrBookCtrl
+		 * @param fileDialog, the file Dialog to use on action seg
 		 */
 		public SaveAction(SimpleButtonFileDialog fileDialog){
 			dialogBox = fileDialog;
@@ -211,7 +210,7 @@ public class AddressBookWindow {
 		}
 	}
 	/**
-	 * 
+	 * Locate Person from the addrBook on release
 	 * @author eyez
 	 *
 	 */
@@ -249,7 +248,7 @@ public class AddressBookWindow {
 		}
 	}
 	/**
-	 * 
+	 * Opens new person prompt window on action release
 	 * @author eyez
 	 *
 	 */
@@ -276,7 +275,7 @@ public class AddressBookWindow {
 		}
 	}
 	/**
-	 * 
+	 * open Edit person prompt if a table element is selected
 	 * @author eyez
 	 *
 	 */
@@ -314,7 +313,7 @@ public class AddressBookWindow {
 		}
 	}
 	/**
-	 * 
+	 * Opens sort prompt and applies to the table
 	 * @author eyez
 	 *
 	 */
@@ -332,20 +331,4 @@ public class AddressBookWindow {
 			updateTable();
 		}
 	}
-	/**
-	 * 
-	 * @author eyez
-	 *
-	 */
-	class EditRunner implements Runnable{
-		String[] output = null;
-		public void run() {
-			try {
-				PersonEdit personWindow = new PersonEdit("Add Contact");
-				output = personWindow.getOutput();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-	};
 }

@@ -68,7 +68,7 @@ public class PersonEdit {
 	}
 	/**
 	 * 
-	 * @return
+	 * @return String[], contact information 
 	 */
 	public String[] getOutput(){
 		return initialize(title);
@@ -169,11 +169,13 @@ public class PersonEdit {
 		
 	}
 	/**
-	 * 
+	 * translate txtfield gettext from null on fail to blank on fail
 	 * @param txtfield
-	 * @return
+	 * @return getText(), blank on fail
 	 */
 	private String getText(JTextField txtfield){
+		if(txtfield == null)
+			return "";
 		String out = txtfield.getText();
 		if(out != null)
 			return out;
