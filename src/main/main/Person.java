@@ -145,11 +145,11 @@ public class Person implements Serializable {
 		String out = "serialVersionUID : " + serialVersionUID;
 		out += " LastName : " + lastName;
 		out += " FirstName : " + firstName;
-		out += " Address : " + address;
-		out += " City : " + city;
-		out += " State : " + state;
+		out += " Address : " + getAddress();
+		out += " City : " + getCity();
+		out += " State : " + getState();
 		out += " Zip : " + zip;
-		out += " Phone : " + phone;
+		out += " Phone : " + getPhone();
 		return out;
 	}
 	

@@ -40,11 +40,11 @@ public class FileSystemTest {
 	 */
 	@Test
 	public void loadTest(){
-		filesys.loadFile(file);
+		assertNotNull(filesys.loadFile(file));
 	}
 	@Test
 	public void readTest(){
-		filesys.readFile(file);
+		assertNotNull(filesys.readFile(file));
 	}
 	@Test
 	public void IOExceptionReadTest(){
