@@ -39,7 +39,8 @@ public class AddressBook implements Serializable {
 
 	@Override
 	public String toString() {
-		String out = " Entries : ";
+		String out ="serialVersionUID : " + serialVersionUID +
+				" Entries : ";
 		for (Person p : entries.toArray(new Person[0]))
 			out += " Person : " + p.toString();
 
