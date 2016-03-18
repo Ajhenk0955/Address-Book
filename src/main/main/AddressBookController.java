@@ -22,55 +22,15 @@ public class AddressBookController {
 
 	private AddressBook addressBook;
 	private File file;
-	private HashMap<String, String> REGEX = new HashMap<String, String>();
 	/*
 	 * constructor
 	 */
 	public AddressBookController(AddressBook addressBook) {
 		this.addressBook = addressBook;
 		
-		// input regex to hashmap
-		REGEX.put("US-ZIP", "^[0-9]{5}(?:-[0-9]{4})?$");
-		REGEX.put("PHONE",
-				"^\\(?([0-9]{3})\\)?[-.\\s]?([0-9]{3})[-.\\s]?([0-9]{4})$");
-		REGEX.put("LASTNAME", "[a-zA-z]+([ '-][a-zA-Z]+)*");
-		REGEX.put("FIRSTNAME", "[A-Z][a-zA-Z]*");
-		REGEX.put("CITY", "([a-zA-Z]+|[a-zA-Z]+\\s[a-zA-Z]+)");
-		REGEX.put("STATE", "([a-zA-Z]+|[a-zA-Z]+\\s[a-zA-Z]+)");
-		REGEX.put("ADDRESS", "\\d+\\s+([a-zA-Z]+|[a-zA-Z]+\\s[a-zA-Z]+)");
-		
-		//putting array locations with regex values
-		REGEX.put("0", "LASTNAME");
-		REGEX.put("1", "FIRSTNAME");
-		REGEX.put("2", "PHONE");
-		REGEX.put("3", "ADDRESS");
-		REGEX.put("4", "CITY");
-		REGEX.put("5", "STATE");
-		REGEX.put("6", "US-ZIP");
 	}
 
-	/**
-	 * Verifies any value returns true if all values are valid
-	 * 
-	 * @return
-	 */
-	public boolean verify(Person person){
-		String[] valueToCheck = person.getDataPoints();
-		for(int i = 0; i<valueToCheck.length; i++){
-			if (valueToCheck[i] == null) {
-				continue;
-			}
-			//get type of input
-			String type = REGEX.get(String.valueOf(i));
-			Pattern pattern = Pattern.compile(REGEX.get(type));
-	
-			Matcher matcher = pattern.matcher(valueToCheck[i]);
-			if (!matcher.matches())
-				return false;
-		}
-		return true;
-		
-	}
+
 	/*
 	 * adds a person to the addressBook calls to the addressBook to add returns
 	 * true if success
@@ -78,9 +38,7 @@ public class AddressBookController {
 	public boolean addPerson(String firstName, String lastName, String address, String city, String state, String zip,
 			String phone) {
 		Person person = new Person(firstName, lastName, address, city, state, zip, phone);
-		if(!verify(person)){
-			return false;
-		}
+
 		if (!addressBook.entries.contains(person)) {
 			addressBook.entries.add(person);
 			return true;
@@ -101,10 +59,7 @@ public class AddressBookController {
 			try {
 				
 				Person person = new Person(firstName, lastName, address, city, state, zip, phone);
-				
-				if(!verify(person)){
-					return false;
-				}
+
 				addressBook.entries.set(index, person);
 				return true;
 

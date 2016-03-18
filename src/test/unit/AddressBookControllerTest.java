@@ -42,6 +42,7 @@ public class AddressBookControllerTest {
 		
 		controller.saveAddressBook(file);
 	}
+
 	/**
 	 * Test method for addPerson
 	 */
