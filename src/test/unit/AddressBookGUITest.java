@@ -22,7 +22,6 @@ public class AddressBookGUITest {
 
 	@Test
 	public void test() {
-		fail("Not yet implemented");
 	}
 
 }

@@ -256,7 +256,63 @@ public class AddressBookControllerTest {
 	 */
 	@Test
 	public void testSortNameLast() {
+		controller.addPerson("Joe", "Bob", "kowloon ln", "Punta Rassa", "FL", "33331", "239-154-9584");
+		controller.addPerson("Jill", "Bob", "kowloon ln", "Punta Rassa", "FL", "33332", "239-154-9584");
+		controller.addPerson("Jan", "Bob", "kowloon ln", "Punta Rassa", "FL", "33433", "239-154-9584");
+		controller.addPerson("Zeke", "Bob", "kowloon ln", "Punta Rassa", "FL", "13333", "239-154-9584");
+		controller.addPerson("Andrew", "Bob", "kowloon ln", "Punta Rassa", "FL", "33633", "239-154-9584");
 
+		controller.sortValue(0);
+
+		String expected = "serialVersionUID : 1 "
+				+ "Entries :  "
+					+ "Person : "
+						+ "serialVersionUID : 1 "
+						+ "LastName : Bob "
+						+ "FirstName : Joe "
+						+ "Address : kowloon ln "
+						+ "City : Punta Rassa "
+						+ "State : FL "
+						+ "Zip : 33331 "
+						+ "Phone : 239-154-9584 "
+					+ "Person : "
+						+ "serialVersionUID : 1 "
+						+ "LastName : Bob "
+						+ "FirstName : Jill "
+						+ "Address : kowloon ln "
+						+ "City : Punta Rassa "
+						+ "State : FL "
+						+ "Zip : 33332 "
+						+ "Phone : 239-154-9584 "
+					+ "Person : serialVersion"
+						+ "UID : 1 "
+						+ "LastName : Bob "
+						+ "FirstName : Jan "
+						+ "Address : kowloon ln "
+						+ "City : Punta Rassa "
+						+ "State : FL "
+						+ "Zip : 33433 "
+						+ "Phone : 239-154-9584 "
+					+ "Person : "
+						+ "serialVersionUID : 1 "
+						+ "LastName : Bob "
+						+ "FirstName : Zeke "
+						+ "Address : kowloon ln "
+						+ "City : Punta Rassa "
+						+ "State : FL "
+						+ "Zip : 13333 "
+						+ "Phone : 239-154-9584 "
+					+ "Person : "
+						+ "serialVersionUID : 1 "
+						+ "LastName : Bob "
+						+ "FirstName : Andrew "
+						+ "Address : kowloon ln "
+						+ "City : Punta Rassa "
+						+ "State : FL "
+						+ "Zip : 33633 "
+						+ "Phone : 239-154-9584";
+
+		assertEquals("Sort Test", expected, controller.printEntries());
 	}
 
 	/**
