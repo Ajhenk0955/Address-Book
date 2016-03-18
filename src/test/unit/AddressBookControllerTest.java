@@ -261,7 +261,7 @@ public class AddressBookControllerTest {
 		controller.addPerson("Zeke", "E", "kowloon ln", "Punta Rassa", "FL", "33333", "239-154-9584");
 		controller.addPerson("Andrew", "A", "kowloon ln", "Punta Rassa", "FL", "33333", "239-154-9584");
 
-
+		controller.sortValue(0);
 
 		String expected = "serialVersionUID : 1 Entries :  "
 				+ "Person : serialVersionUID : 1 "
