@@ -209,7 +209,7 @@ public class AddressBookController {
 
 	public String[][] getEntriesDataPoints() {
 		Person[] people = addressBook.entries.toArray(new Person[0]);
-		if (people[0] == null)
+		if (people == null || people.length == 0 || people[0] == null)
 			return new String[0][0];
 
 		final int num_datapoints = people[0].getNumDataPoints();

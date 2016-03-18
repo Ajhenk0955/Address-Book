@@ -1,29 +1,24 @@
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
+import java.awt.BorderLayout;
+import java.awt.GridLayout;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.Semaphore;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JComboBox;
-import javax.swing.JButton;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 public class filterWindow {
 
 	private JFrame Filter;
-	private int sort_func = 0;
 	private JComboBox<String> comboBox;
-	private Semaphore mutex = new Semaphore(1);
 
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
 		filterWindow window = new filterWindow();
-		window.Filter.setVisible(true);
 		System.out.println(window.getEnum());
 	}
 
@@ -31,69 +26,40 @@ public class filterWindow {
 	 * Create the application.
 	 */
 	public filterWindow() {
-		try {
-			mutex.acquire();
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-		initialize();
 	}
 	public int getEnum(){
-		try {
-			mutex.acquire();
-			mutex.release();
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-		return sort_func;
+		return initialize();
 	}
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {
+	private int initialize() {
 		Filter = new JFrame("Filter Options");
 		Filter.setBounds(100, 100, 265, 118);
 		Filter.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		Filter.getContentPane().setLayout(null);
 		
+		JPanel p = new JPanel(new BorderLayout(5,5));
+
+        JPanel labels = new JPanel(new GridLayout(0,1,2,2));
+        JPanel input = new JPanel(new GridLayout(0,1,2,2));
 		
-		Filter.addWindowListener(new WindowListener(){
-
-			public void windowActivated(WindowEvent e) {
-				
-			}
-			public void windowClosing(WindowEvent e) {
-				mutex.release();
-			}
-			public void windowDeactivated(WindowEvent e) {
-				
-			}
-			public void windowDeiconified(WindowEvent e) {
-				
-			}
-			public void windowIconified(WindowEvent e) {
-				
-			}
-			public void windowOpened(WindowEvent e) {
-				
-			}
-			public void windowClosed(WindowEvent e) {
-				mutex.release();
-			}
-		});
-
 		JLabel lblSelectFilter = new JLabel("Select Filter :");
-		lblSelectFilter.setBounds(10, 18, 76, 14);
-		Filter.getContentPane().add(lblSelectFilter);
+		labels.add(lblSelectFilter);
 
 		comboBox = new JComboBox<String>( getSort() );
-		comboBox.setBounds(90, 15, 140, 20);
-		Filter.getContentPane().add(comboBox);
-
-		JButton btnFilter = new JButton("Filter");
-		btnFilter.setBounds(81, 46, 89, 23);
-		Filter.getContentPane().add(btnFilter);
-		btnFilter.addActionListener(new FilterAction());
+		input.add(comboBox);
+		
+		
+		p.add(labels, BorderLayout.WEST);
+		p.add(input, BorderLayout.CENTER);
+		
+		int result = JOptionPane.showConfirmDialog(Filter,  p, 
+	               "Sort Settings", JOptionPane.OK_CANCEL_OPTION);
+		
+		return (result == JOptionPane.OK_OPTION)?
+					comboBox.getSelectedIndex()
+				:
+					0;
 		
 	}
 	private String[] getSort(){
@@ -103,13 +69,5 @@ public class filterWindow {
 		enums.add("ZIP descending");
 		enums.add("ZIP ascending");
 		return enums.toArray(new String[0]);
-	}
-	class FilterAction implements ActionListener{
-
-		public void actionPerformed(ActionEvent arg0) {
-			sort_func = comboBox.getSelectedIndex();
-			mutex.release();
-			Filter.dispose();
-		}
 	}
 }

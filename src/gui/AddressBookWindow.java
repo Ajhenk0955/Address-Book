@@ -13,11 +13,12 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JLabel;
 
+import main.AddressBook;
 import main.AddressBookController;
 import main.Person;
 
-public class AddressBookJWindow {
-	private AddressBookController addrBook = new AddressBookController(null);
+public class AddressBookWindow {
+	private AddressBookController addrBook = new AddressBookController(new AddressBook());
 	private JFrame frmAddressBooklet;
 	private JTable table;
 
@@ -26,13 +27,13 @@ public class AddressBookJWindow {
 	 */
 	public static void main(String[] args) {
 		@SuppressWarnings("unused")
-		AddressBookJWindow window = new AddressBookJWindow();
+		AddressBookWindow window = new AddressBookWindow();
 	}
 
 	/**
 	 * Create the application.
 	 */
-	public AddressBookJWindow() {
+	public AddressBookWindow() {
 		initialize();
 	}
 
@@ -77,7 +78,7 @@ public class AddressBookJWindow {
 		panel.add(btnSave, gbc_btnSave);
 
 		JButton btnFind = new JButton("Find");
-		btnSave.addActionListener(new FindAction());
+		btnFind.addActionListener(new FindAction());
 		GridBagConstraints gbc_btnFind = new GridBagConstraints();
 		gbc_btnFind.insets = new Insets(0, 0, 0, 5);
 		gbc_btnFind.anchor = GridBagConstraints.NORTHEAST;
@@ -86,7 +87,7 @@ public class AddressBookJWindow {
 		panel.add(btnFind, gbc_btnFind);
 
 		JButton btnAdd = new JButton("Add");
-		btnSave.addActionListener(new AddAction());
+		btnAdd.addActionListener(new AddAction());
 		GridBagConstraints gbc_btnAdd = new GridBagConstraints();
 		gbc_btnAdd.insets = new Insets(0, 0, 0, 5);
 		gbc_btnAdd.anchor = GridBagConstraints.NORTHEAST;
@@ -95,7 +96,7 @@ public class AddressBookJWindow {
 		panel.add(btnAdd, gbc_btnAdd);
 
 		JButton btnEdit = new JButton("Edit");
-		btnSave.addActionListener(new EditAction());
+		btnEdit.addActionListener(new EditAction());
 		GridBagConstraints gbc_btnEdit = new GridBagConstraints();
 		gbc_btnEdit.insets = new Insets(0, 0, 0, 5);
 		gbc_btnEdit.anchor = GridBagConstraints.NORTHEAST;
@@ -104,7 +105,7 @@ public class AddressBookJWindow {
 		panel.add(btnEdit, gbc_btnEdit);
 
 		JButton btnFilter = new JButton("Filter");
-		btnSave.addActionListener(new FilterAction());
+		btnFilter.addActionListener(new FilterAction());
 		GridBagConstraints gbc_btnFilter = new GridBagConstraints();
 		gbc_btnFilter.anchor = GridBagConstraints.EAST;
 		gbc_btnFilter.gridx = 11;
@@ -181,7 +182,7 @@ public class AddressBookJWindow {
 		 * @param e
 		 */
 		public void actionPerformed(ActionEvent e){
-			String[] data = new PersonEdit("Search Filters").getOutput();
+			String[] data = new PersonEdit("Search Filter").getOutput();
 			Person p = addrBook.getPerson(data[0], data[1]);
 			String[][] person = new String[][]{p.getDataPoints()};
 			
@@ -207,7 +208,8 @@ public class AddressBookJWindow {
 		 * @param e
 		 */
 		public void actionPerformed(ActionEvent e){
-			String[] data= new PersonEdit("Add Contract").getOutput();
+			String[] data = new PersonEdit("Add Person").getOutput();
+			
 			addrBook.addPerson(data[1],//first 
 					data[0], //last
 					data[3], //Street
@@ -225,13 +227,20 @@ public class AddressBookJWindow {
 		 */
 		public void actionPerformed(ActionEvent e){
 			int row = table.getSelectedRow();
-			String[] in_data = {(String) table.getValueAt(row, 0),
+			String[] in_data;
+			try{
+			in_data = new String[] {
+					(String) table.getValueAt(row, 0),
 					(String) table.getValueAt(row, 1),
 					(String) table.getValueAt(row, 2),
 					(String) table.getValueAt(row, 3),
 					(String) table.getValueAt(row, 4),
 					(String) table.getValueAt(row, 5),
 					(String) table.getValueAt(row, 6)};
+			}catch(ArrayIndexOutOfBoundsException e2){
+				updateTable();
+				return;
+			}
 			String[] out_data = new PersonEdit("Edit Contact", in_data).getOutput();
 			addrBook.editPerson(row, 
 					out_data[1],//first 
@@ -252,9 +261,21 @@ public class AddressBookJWindow {
 		 * @param e
 		 */
 		public void actionPerformed(ActionEvent e){
-			int Selection = new filterWindow().getEnum();
+			filterWindow filt = new filterWindow();
+			int Selection = filt.getEnum();
 			addrBook.sortValue(Selection);
 			updateTable();
 		}
 	}
+	class EditRunner implements Runnable{
+		String[] output = null;
+		public void run() {
+			try {
+				PersonEdit personWindow = new PersonEdit("Add Contact");
+				output = personWindow.getOutput();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	};
 }
