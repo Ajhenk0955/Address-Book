@@ -1,6 +1,4 @@
-/**
- *
- */
+package unit;
 
 import static org.junit.Assert.*;
 
@@ -15,7 +13,7 @@ import main.AddressBook;
 import main.AddressBookController;
 
 /**
- * Testing Case
+ * Unit testing for addressBook controller
  *
  */
 public class AddressBookControllerTest {
@@ -34,7 +32,7 @@ public class AddressBookControllerTest {
 	}
 
 	/**
-	 * Integration Test method for addPerson
+	 * Test method for addPerson
 	 */
 	@Test
 	public void testAddPerson() {
@@ -67,10 +65,11 @@ public class AddressBookControllerTest {
 
 		controller.addPerson(firstName, lastName, address, city, state, zip, phone);
 
+		// now editing person
 		city = "Miami";
 		String output = "kowloon ln Miami Joe Bob 000-000-000 FL 33333 ";
 		controller.editPerson(index, firstName, lastName, address, city, state, zip, phone);
-		assertEquals("add a person", output, controller.printEntries());
+		assertEquals("edit a person", output, controller.printEntries());
 
 	}
 
@@ -104,7 +103,8 @@ public class AddressBookControllerTest {
 		controller.addPerson("Zeke", "Bob", "kowloon ln", "Punta Rassa", "FL", "33333", "000-000-000");
 		controller.addPerson("Andrew", "Bob", "kowloon ln", "Punta Rassa", "FL", "33333", "000-000-000");
 
-		controller.sortFirstName();
+		// option 1
+		controller.sortValue(1);
 
 		String output = "kowloon ln Punta Rassa Andrew Bob 000-000-000 FL 33333 "
 				+ "kowloon ln Punta Rassa Jan Bob 000-000-000 FL 33333 "
@@ -126,7 +126,7 @@ public class AddressBookControllerTest {
 		controller.addPerson("Zeke", "Bob", "kowloon ln", "Punta Rassa", "FL", "13333", "000-000-000");
 		controller.addPerson("Andrew", "Bob", "kowloon ln", "Punta Rassa", "FL", "33633", "000-000-000");
 
-		controller.sortZIP();
+		controller.sortValue(2);
 
 		String output = "kowloon ln Punta Rassa Andrew Bob 000-000-000 FL 33633 "
 				+ "kowloon ln Punta Rassa Jan Bob 000-000-000 FL 33433 "
@@ -153,7 +153,7 @@ public class AddressBookControllerTest {
 		controller.createAddressBook();
 		controller.addPerson(firstName, lastName, address, city, state, zip, phone);
 		String book1 = controller.printEntries();
-		
+
 		city = "Bunta Rassa";
 		controller.createAddressBook();
 		controller.addPerson(firstName, lastName, address, city, state, zip, phone);
@@ -175,10 +175,10 @@ public class AddressBookControllerTest {
 		String phone = "000-000-000";
 
 		controller.addPerson(firstName, lastName, address, city, state, zip, phone);
-		
+
 		boolean success = controller.updateAddressBook(new File("testSave.log"));
-		
-		if(success){
+
+		if (success) {
 			firstName = "Joey";
 			lastName = "Bobby";
 			address = "kowloony lny";
@@ -188,7 +188,7 @@ public class AddressBookControllerTest {
 			phone = "000-000-000y";
 
 			controller.addPerson(firstName, lastName, address, city, state, zip, phone);
-			
+
 			try {
 				controller.loadFile(new File("testSave.log"));
 			} catch (IOException e) {
@@ -199,8 +199,6 @@ public class AddressBookControllerTest {
 			String output = "kowloon ln Punta Rassa Joe Bob 000-000-000 FL 33333 ";
 
 			assertEquals("Print Test", output, controller.printEntries());
-		} else {
-			assertEquals("Failed to save file", true, false);
 		}
 	}
 
@@ -209,14 +207,6 @@ public class AddressBookControllerTest {
 	 */
 	@Test
 	public void testSaveAddressBook() {
-		fail("Not yet implemented");
-	}
-
-	/**
-	 * Test method for saveAddressBook2
-	 */
-	@Test
-	public void testSaveAddressBookFile() {
 		fail("Not yet implemented");
 	}
 

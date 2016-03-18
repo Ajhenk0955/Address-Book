@@ -8,7 +8,6 @@ import java.util.Comparator;
 import static main.PersonComparator.*;
 
 /*
-# IN PROGRESS @ HENK
  * The basic responsibility of an AdressBookController object is to carry out the following functions:
  * Add, Edit and delete a person
  * Sort entries by name and ZIP code
@@ -23,94 +22,6 @@ public class AddressBookController {
 
 	public AddressBookController(AddressBook addressBook) {
 		this.addressBook = addressBook;
-	}
-
-	/*
-	 * adds a person to the addressBook calls to the addressBook to add returns
-	 * true if success
-	 */
-	public boolean addPerson(String firstName, String lastName, String address, String city, String state, String zip,
-			String phone) {
-		Person person = new Person(firstName, lastName, address, city, state, zip, phone);
-		if (!addressBook.entries.contains(person)) {
-			addressBook.entries.add(person);
-		}
-		return true;
-
-	}
-
-	/*
-	 * edits a person in a list, given information and list index
-	 */
-	public boolean editPerson(int index, String firstName, String lastName, String address, String city, String state,
-			String zip, String phone) {
-		if (addressBook.entries.size() < index) {
-			return false;
-		} else {
-			try {
-				Person temp = addressBook.entries.get(index);
-				addressBook.entries.set(index, temp);
-				return true;
-
-			} catch (Exception e) {
-				e.printStackTrace();
-				return false;
-			}
-		}
-	}
-
-	/*
-	 * deletes a person in a list
-	 */
-	public boolean deletePerson(int index) {
-		if (addressBook.entries.size() < index) {
-			return false;
-		} else {
-			try {
-				addressBook.entries.remove(index);
-				return true;
-			} catch (Exception e) {
-				e.printStackTrace();
-				return false;
-			}
-		}
-	}
-
-	/*
-	 * sorts based on the value using a switch to set the comparator
-	 * 0 = lastNameSortAscending
-	 * 1 = firstNameSortAscending
-	 * 2 = zipSort descending
-	 * 3 = zipSort ascending
-	 */
-	public boolean sortValue(int option) {
-		Comparator compare = null;
-		if(option == -1){
-			return false;
-		}
-		switch(option){
-		case 0: // last name
-			compare = getComparator(LAST_NAME_SORT);
-			break;
-		case 1: // first name
-			compare = getComparator(FIRST_NAME_SORT);
-			break;
-		case 2: // sortZIP
-			compare = decending(getComparator(ZIP_SORT));
-			break;
-		case 3: // zip
-			compare = getComparator(ZIP_SORT);
-			break;
-		}
-		
-		
-		try {
-			Collections.sort(addressBook.entries, compare);
-			return true;
-		} catch (Exception e) {
-			e.printStackTrace();
-			return false;
-		}
 	}
 
 	/*
@@ -174,6 +85,91 @@ public class AddressBookController {
 	}
 
 	/*
+	 * adds a person to the addressBook calls to the addressBook to add returns
+	 * true if success
+	 */
+	public boolean addPerson(String firstName, String lastName, String address, String city, String state, String zip,
+			String phone) {
+		Person person = new Person(firstName, lastName, address, city, state, zip, phone);
+		if (!addressBook.entries.contains(person)) {
+			addressBook.entries.add(person);
+		}
+		return true;
+
+	}
+
+	/*
+	 * edits a person in a list, given information and list index
+	 */
+	public boolean editPerson(int index, String firstName, String lastName, String address, String city, String state,
+			String zip, String phone) {
+		if (addressBook.entries.size() < index) {
+			return false;
+		} else {
+			try {
+				Person temp = addressBook.entries.get(index);
+				addressBook.entries.set(index, temp);
+				return true;
+
+			} catch (Exception e) {
+				e.printStackTrace();
+				return false;
+			}
+		}
+	}
+
+	/*
+	 * deletes a person in a list
+	 */
+	public boolean deletePerson(int index) {
+		if (addressBook.entries.size() < index) {
+			return false;
+		} else {
+			try {
+				addressBook.entries.remove(index);
+				return true;
+			} catch (Exception e) {
+				e.printStackTrace();
+				return false;
+			}
+		}
+	}
+
+	/*
+	 * sorts based on the value using a switch to set the comparator 0 =
+	 * lastNameSortAscending 1 = firstNameSortAscending 2 = zipSort descending 3
+	 * = zipSort ascending
+	 */
+	public boolean sortValue(int option) {
+		Comparator compare = null;
+		if (option == -1) {
+			return false;
+		}
+		switch (option) {
+		case 0: // last name
+			compare = getComparator(LAST_NAME_SORT);
+			break;
+		case 1: // first name
+			compare = getComparator(FIRST_NAME_SORT);
+			break;
+		case 2: // sortZIP descending
+			compare = decending(getComparator(ZIP_SORT));
+			break;
+		case 3: // zip
+			compare = getComparator(ZIP_SORT);
+			break;
+		}
+
+		try {
+			Collections.sort(addressBook.entries, compare);
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+
+	/*
 	 * Prints each entry in the current addressBook
 	 */
 	public String printEntries() {
@@ -207,6 +203,9 @@ public class AddressBookController {
 		return null;
 	}
 
+	/*
+	 * gets data from the list
+	 */
 	public String[][] getEntriesDataPoints() {
 		Person[] people = addressBook.entries.toArray(new Person[0]);
 		if (people[0] == null)

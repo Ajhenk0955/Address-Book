@@ -15,28 +15,16 @@ public class AddressBook implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	protected List<Person> entries;
+	public List<Person> entries;
 
 	public AddressBook() {
 		entries = new ArrayList<Person>();
 	}
 
-	public void addPerson(Person p) {
-		entries.add(p);
-	}
-
-	public void addPeople(Collection<Person> p) {
-		entries.addAll(p);
-	}
-
-	public Person findPerson(String lastName, String firstName) {
-		for (Person p : entries.toArray(new Person[0])) {
-			if (p.getLastName().equals(lastName) && p.getFirstName().equals(firstName))
-				return p;
-		}
-		return null;
-	}
-
+	/* prints the string output with the serialUID
+	 * (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
 	@Override
 	public String toString() {
 		String out ="serialVersionUID : " + serialVersionUID +

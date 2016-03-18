@@ -1,3 +1,4 @@
+package unit;
 
 
 import static org.junit.Assert.*;
@@ -5,7 +6,10 @@ import static org.junit.Assert.*;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-
+/*
+ * TODO
+ * Automated gui tests
+ */
 public class AddressBookGUITest {
 
 	@Before

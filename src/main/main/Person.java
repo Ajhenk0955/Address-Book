@@ -8,9 +8,7 @@ import java.io.Serializable;
  * update the stored information (except the name) about the individual
  */
 public class Person implements Serializable {
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 	private String firstName;
 	private String lastName;
@@ -152,6 +150,10 @@ public class Person implements Serializable {
 		out += " Phone : " + phone;
 		return out;
 	}
+	
+	/*
+	 * returns an array of the person data
+	 */
 	public String[] getDataPoints(){
 		return new String[]{
 				lastName,
@@ -163,6 +165,10 @@ public class Person implements Serializable {
 				zip
 		};
 	}
+	
+	/*
+	 * returns the size of the person data, useful if person criteria are changed
+	 */
 	public int getNumDataPoints(){
 		return getDataPoints().length;
 	}
